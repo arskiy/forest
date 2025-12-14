@@ -480,3 +480,5 @@
 \def\arsinh{#{\operatorname{arsinh}}}
 \def\arcosh{#{\operatorname{arcosh}}}
 \def\artanh{#{\operatorname{artanh}}}
+
+\p{Nesse arquivo guardo minhas definições em #{\LaTeX}. Não há nada para ser lido.}

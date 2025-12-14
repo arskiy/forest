@@ -14,7 +14,7 @@ html {
 body {
   font-family: var(--font);
   text-underline-position: from-font;
-  font-size: 13pt;
+  font-size: 12pt;
   /* Subtly make it thicker */
   /* -webkit-text-stroke-width: 0.25pt; */
   font-weight: 450;
@@ -159,7 +159,7 @@ body>header {
 }
 
 #grid-wrapper>article {
-  max-width: 40em;
+  max-width: 60em;
   grid-column: 1;
 }
 
@@ -718,7 +718,7 @@ ol li ol li ol {
 
   #grid-wrapper {
     display: grid;
-    grid-template-columns: 90ex;
+    grid-template-columns: 120ex;
   }
 }
 

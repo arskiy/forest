@@ -9,8 +9,13 @@
   <xsl:template match="/">
     <html xmlns="http://www.w3.org/1999/xhtml" data-base-url="{/f:tree/@base-url}">
       <head>
+        <script>
+          document.documentElement.style.background = "rgb(255, 243, 229)";
+        </script>
         <meta name="viewport" content="width=device-width" />
+        <meta name="theme-color" content="#1e1e1e" />
         <link rel="icon" href="favicon.ico" />
+        <style>html, body { background-color: rgb(255, 243, 229); } </style>
         <link rel="stylesheet" href="{/f:tree/@base-url}style.css" />
         <link rel="stylesheet" href="{/f:tree/@base-url}katex.min.css" />
         <link rel="stylesheet" href="{/f:tree/@base-url}computer-modern.css" />
@@ -28,7 +33,7 @@
         </title>
       </head>
       <body>
-        <ninja-keys placeholder="Start typing a note title or ID"></ninja-keys>
+        <ninja-keys placeholder="Escreva o título ou ID da anotação"></ninja-keys>
         <svg xmlns="http://www.w3.org/2000/svg" height="0">
           <filter id="filter">
             <feColorMatrix
