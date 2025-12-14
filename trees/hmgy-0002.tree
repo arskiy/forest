@@ -13,7 +13,7 @@
     \arrow[from=1-4, to=1-5]
   \end{tikzcd}}
   as seguintes afirmações são equivalentes:
-  \ul{
+  \ol{
       \li{Existe um homomorfismo #{t \from M \to L} tal que #{t \circ f = \id_L};}
       \li{Existe um homomorfismo #{u \from N \to M} tal que #{g \circ u = \id_N};}
       \li{Existe um isomorfismo #{h \from M \to L \oplus N} tal que o seguinte diagrama comuta:

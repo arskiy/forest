@@ -1,0 +1,978 @@
+ \documentclass[a4paper,12pt,openany, oneside]{scrbook}
+
+\usepackage{preamble-alice}
+\usepackage{boxes-alice}
+
+\begin{document}
+\title{Introdução à Teoria de Homologia e Cohomologia}
+\author{alice :)}
+\maketitle
+
+\tableofcontents
+
+\chapter{Álgebra Homológica}
+
+\section{Categorias}
+
+Categorias generalizam estruturas matemáticas e suas transformações, de modo a fazer transparecer as propriedades em comum de certas estruturas, como grupos, anéis, módulos, espaços vetoriais, espaços topológicos, etc. Usaremos-nas de modo a obter a maior generalidade possível em nossos resultados.
+
+Categorias podem ser expressadas sucintamente como uma coleção de objetos, no caso a estrutura em si, e morfismos, que são aplicações entre esses objetos que preservam sua estrutura de alguma forma, como por exemplo homomorfismos entre grupos.
+
+\begin{Def}{Categoria}{categoria}
+    Uma categoria #{\catname{C}} consiste em:
+    \begin{itemize}
+        \item Uma coleção #{\Obj(\catname{C})} de \textbf{objetos} da categoria;
+        \item Para cada #{A, B \in \Obj(\catname{C})}, uma coleção #{\Hom_\catname{C}(A, B)} de \textbf{morfismos} de #{A} para #{B};
+        \item Para cada #{A, B, C \in \Obj(\catname{C})}, uma função \begin{align*}\circ \from \Hom_\catname{C}(B, C) \times \Hom_\catname{C}(A, B) &\to \Hom_\catname{C}(A, C) \\ (g, f) &\mapsto g \circ f,\end{align*} chamada de composição;
+        \item Para cada #{A, B, C, D \in \Obj(\catname{C})} e também #{f \in \Hom_{\catname{C}}(A, B), g \in \Hom_\catname{C}(B, C)} e #{h \in \Hom_\catname{C}(C, D)}, temos #{(h \circ g) \circ f = h \circ (g \circ f)};
+        \item Para cada #{A \in \Obj(\catname{C})}, existe um morfismo #{1_A \in \Hom_\catname{C}(A, A)} chamado de \textbf{morfismo identidade}; 
+        \item Para todo #{A, B \in \Obj(\catname{C})} e #{f \in \Hom_\catname{C}(A, B)}, vale #{f \circ 1_A = 1_B \circ f = f}.
+    \end{itemize}
+\end{Def}
+
+Fixaremos também algumas convenções: \begin{itemize}
+    \item #{A \in \catname{C}} para dizer #{A \in \Obj(\catname{C})}; 
+    \item #{f \from A \to B} ou ainda #{A \xrightarrow{f} B} para dizer #{f \in \Hom_\catname{C}(A, B)};
+    \item #{gf} para dizer #{g \circ f}.
+    \item Para #{f \from A \to B}, dizemos que #{A} é o domínio de #{f} e #{B} é o contradomínio de #{f}.
+\end{itemize}
+
+Alguns exemplos de categorias, umas das quais usaremos com frequência:
+
+\begin{enumerate}
+    \item A categoria \catname{Set} cujos objetos são conjuntos e funções são seus morfismos;
+    \item A categoria \catname{Grp} onde objetos são grupos e morfismos são homomorfismos de grupos;
+    \item \catname{Ab} onde objetos são grupos abelianos e morfismos são homomorfismos de grupos;
+    \item Para cada corpo #{k}, a categoria #{\Vect_k} onde os objetos são espaços vetoriais sobre o corpo #{k} e os morfismos são transformações lineares;
+    \item \catname{Ring} é a categoria dos anéis associativos com unidade, cujos morfismos são homomorfismos de anéis com unidade;
+    \item \catname{Rng} é a categoria dos anéis associativos;
+    \item \catname{CRing} é a categoria dos anéis comutativos e associativos com unidade, cujos morfismos são homomorfismos de anéis com unidade;
+    \item \catname{Top} é a categoria dos espaços topológicos, onde morfismos são funções contínuas;
+    \item #{\catname{Top}_*} é a categoria dos espaços topológicos com um ponto marcado, onde os objetos são duplas #{(X, x_0)}, onde #{X} é um espaço topológico e #{x_0 \in X}, e seus morfismos #{f \from (X, x_0) \to (Y, y_0)} são funções contínuas #{f \from X \to Y} tais que #{f(x_0) = f(y_0)}.
+\end{enumerate}
+
+Note que na \cref{def:categoria}, usamos a palavra ``coleção'' ao invés de ``conjunto'' -- isso não é ao acaso, observe que em cada um dos exemplos acima, a existência de um conjunto que contém cada um dos objetos de cada categoria implicaria o paradoxo de Russell. Não lidaremos com esses problemas fundacionais nesse texto, que podem ser apropriadamente resolvidos ao escolher um sistema axiomático propício.
+
+\begin{Def}{Categoria oposta}{}
+    Dada uma categoria \catname{C}, podemos construir sua categoria \textbf{oposta} (ou \textbf{dual}), denotada #{\catname{C}^{\mathrm{op}}} ao inverter todos seus morfismos. Isto é, #{\Obj(\catname{C}^{\mathrm{op}}) \defeq \Obj(\catname{C})}, e #{\Hom_{\catname{C}^{\mathrm{op}}}(A, B) \defeq \Hom_\catname{C}(B, A)}.
+\end{Def}
+
+\begin{Def}{Isomorfismo categórico}{isomorfismo}
+    Um \textbf{isomorfismo} em uma categoria é um morfismo #{f \from A \to B} para qual existe um outro morfismo #{g \from B \to A} onde #{fg = 1_B} e #{gf = 1_A}. Assim, chamaremos #{g} de inversa de #{f} (e vice-versa) e denotaremos #{g = f^{-1}}.
+
+    Se existir um isomorfismo de #{A} para #{B}, dizemos que #{A} e #{B} são \textbf{isomorfos} e denotaremos #{A \cong B}.
+\end{Def}
+
+Os isomorfismos em \catname{Set} são as bijeções, em \catname{Ring} são os isomorfismos de anéis, e em \catname{Top} são os homeomorfismos. Em particular, todo morfismo identidade é um isomorfismo.
+
+\begin{Def}{Certos prefixos de ``morfismo''}{}
+    Um morfismo #{f \from A \to B} é chamado de \begin{enumerate}
+        \item \textbf{endomorfismo} se #{A = B};
+        \item \textbf{automorfismo} se #{A = B} e #{f} é um isomorfismo;
+        \item \textbf{monomorfismo} se #{fg_1 = fg_2} implica #{g_1 = g_2}, para qualquer objeto #{C} e #{g_1, g_2 \from C \to A};
+        \item \textbf{epimorfismo} se #{g_1f = g_2f} implica #{g_1 = g_2}, para qualquer objeto #{C} e #{g_1, g_2 \from B \to C}.
+    \end{enumerate}
+\end{Def}
+
+Note que, em \catname{Set}, uma função é um monomorfismo se, e somente se, ela é injetiva, e é um epimorfismo se, e somente se, ela é sobrejetiva. No entanto, em geral, essas noções não são equivalentes: Em \catname{Ring}, a noção de homomorfismo sobrejetor é diferente da noção de epimorfismo, e portanto, um epimorfismo que também é monomorfismo não necessariamente é um isomorfismo.
+
+Seja #{\iota \from \Z \hookrightarrow \Q} a inclusão homomorfa de #{\Z} em #{\Q}, que evidentemente não é sobrejetora. Sejam agora também #{g_1, g_2 \from \Q \to R} homomorfismos tais que #{g_1|_\Z = g_2|_\Z} (isto é, ambas concordam em #{\Z})\footnote{Isso não é por acaso: Como #{\Z} é objeto inicial em \catname{Ring}, existe um único homomorfismo #{\alpha \from \Z \to R}.}. Então #{g_1 = g_2}, pois ##{g_1\left(\frac{p}{q}\right) = g_1(p)g_1(q)^{-1} = g_2(p)g_2(q)^{-1} = g_2\left(\frac{p}{q}\right).} 
+
+\subsection{Propriedades universais}
+Nessa seção, veremos como certas propriedades podem definir unicamente objetos e morfismos em uma determinada categoria.
+
+\begin{Def}{Objetos iniciais e finais}{}
+    Seja \catname{C} uma categoria. Um objeto #{I \in \catname{C}} é dito \textbf{inicial} se, para todo objeto #{A \in \catname{C}}, existe exatamente um morfismo #{I \to A}. Isto é, #{\Hom_\catname{C}(I, A)} é unitário.
+
+    Um objeto #{F \in \catname{C}} é dito \textbf{final} se, para todo objeto #{A \in C}, existe exatamente um morfismo #{A \to F}, isto é, #{\Hom_\catname{C}(A, F)} é unitário.
+
+    Um objeto que é inicial e final em uma categoria é chamado de \textbf{objeto zero}.
+\end{Def}
+
+O objeto inicial da categoria #{\catname{Set}} é o conjunto vazio, e seus objetos finais são quaisquer conjuntos unitários.
+
+\begin{Trma}{Propriedade universal}{abstract-nonsense}
+    Seja \catname{C} uma categoria. Então, \begin{itemize}
+        \item Se #{I_1} e #{I_2} são objetos iniciais em \catname{C}, então #{I_1 \cong I_2};
+        \item Se #{F_1} e #{F_2} são objetos finais em \catname{C}, então #{F_1 \cong F_2}.
+    \end{itemize}
+\end{Trma}
+
+\begin{proof}
+    Como #{I_1} e #{I_2} são objetos iniciais em \catname{C}, existe um único morfismo #{f \from I_1 \to I_2}, e um único morfismo #{g \from I_2 \to I_1}. Então, como #{gf \from I_1 \to I_1} e existe um único morfismo #{1_{I_1} \from I_1 \to I_1}, esse necessariamente deve ser o morfismo identidade de #{I_1}, pois do contrário \catname{C} não seria uma categoria. Portanto, por falta de opções, ##{gf = 1_{I_1}.} Pelo mesmo argumento, temos ##{fg = 1_{I_2}.} Portanto #{f} é um isomorfismo.
+
+    O argumento para #{F_1} e #{F_2} é análogo.
+\end{proof}
+
+Observe que todo objeto final em #{\catname{C}} é um objeto inicial em #{\catname{C}^{op}}.
+
+Dizemos que uma construção satisfaz uma \textit{propriedade universal} quando ela é o objeto inicial ou final de alguma categoria. Demonstrar que uma construção satisfaz uma propriedade universal demonstra a unicidade daquela propriedade, a menos de isomorfismo, pelo \cref{trma:abstract-nonsense}, mas a existência ainda precisa ser demonstrada separadamente, geralmente por meio de uma construção, pois nem toda categoria possui objetos iniciais ou finais.
+
+Um exemplo de propriedade universal é a do produto: 
+
+\begin{Def}{Propriedade universal do produto}{universal-produto}
+    Sejam \catname{C} uma categoria, e #{A, B\in \catname{C}}. O \textbf{produto} de #{A} e #{B} é um objeto #{A \times B \in \catname{C}} juntamente com morfismos #{\pi_A \from A \times B \to A} e #{\pi_B \from A \times B \to B} tais que, para todo objeto #{Z \in \catname{C}} munido de morfismos #{f_A \from Z \to A} e #{f_B \from Z \to B}, existe um único morfismo #{\sigma \from Z \to A \times B} tal que o seguinte diagrama comuta:
+    % https://q.uiver.app/#q=WzAsNCxbMCwxLCJaIl0sWzEsMSwiQSBcXHRpbWVzIEIiXSxbMiwwLCJBIl0sWzIsMiwiQiJdLFsxLDIsIlxccGlfQSIsMl0sWzEsMywiXFxwaV9CIl0sWzAsMywiZl9CIiwyLHsiY3VydmUiOjJ9XSxbMCwyLCJmX0EiLDAseyJjdXJ2ZSI6LTJ9XSxbMCwxLCJcXHNpZ21hIl1d
+    \[\begin{tikzcd}
+    	&& A \\
+    	Z & {A \times B} \\
+    	&& B
+    	\arrow["{f_A}", curve={height=-12pt}, from=2-1, to=1-3]
+    	\arrow["\sigma", from=2-1, to=2-2]
+    	\arrow["{f_B}"', curve={height=12pt}, from=2-1, to=3-3]
+    	\arrow["{\pi_A}"', from=2-2, to=1-3]
+    	\arrow["{\pi_B}", from=2-2, to=3-3]
+    \end{tikzcd}\]
+\end{Def}
+
+De fato, observe que ao tomar #{\catname{C} = \catname{Set}} e #{A \times B} sendo o produto cartesiano de #{A} e #{B}, a propriedade acima é trivialmente satisfeita.
+
+Ademais, o produto de dois objetos em \catname{C} é único:
+
+Definamos a categoria #{\catname{C}_{A, B}}, com objetos sendo diagramas em \catname{C} da forma % https://q.uiver.app/#q=WzAsMyxbMCwxLCJaIl0sWzEsMCwiQSJdLFsxLDIsIkIiXSxbMCwxLCJmIl0sWzAsMiwiZyIsMl1d
+\[\begin{tikzcd}
+	& A \\
+	Z \\
+	& B
+	\arrow["f", from=2-1, to=1-2]
+	\arrow["g"', from=2-1, to=3-2]
+\end{tikzcd}\]
+
+e morfismos #{\sigma} sendo diagramas da forma
+% https://q.uiver.app/#q=WzAsNixbMCwxLCJaXzEiXSxbMSwwLCJBIl0sWzEsMiwiQiJdLFszLDEsIlpfMiJdLFs0LDAsIkEiXSxbNCwyLCJCIl0sWzAsMSwiZl8xIl0sWzAsMiwiZ18xIiwyXSxbMyw0LCJmXzIiLDJdLFszLDUsImdfMiJdLFswLDMsIlxcc2lnbWEiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjB9fV1d
+\[\begin{tikzcd}
+	& A &&& A \\
+	{Z_1} &&& {Z_2} \\
+	& B &&& B
+	\arrow["{f_1}", from=2-1, to=1-2]
+	\arrow["\sigma", between={0.2}{1}, from=2-1, to=2-4]
+	\arrow["{g_1}"', from=2-1, to=3-2]
+	\arrow["{f_2}"', from=2-4, to=1-5]
+	\arrow["{g_2}", from=2-4, to=3-5]
+\end{tikzcd}\]
+
+que devem ser de modo a fazer o seguinte diagrama comutar:
+
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJaXzEiXSxbMSwxLCJaXzIiXSxbMiwwLCJBIl0sWzIsMiwiQiJdLFswLDIsImZfMSIsMCx7ImN1cnZlIjotMn1dLFswLDMsImdfMSIsMix7ImN1cnZlIjoyfV0sWzAsMSwiXFxzaWdtYSJdLFsxLDIsImZfMiIsMl0sWzEsMywiZ18yIl1d
+\[\begin{tikzcd}
+	&& A \\
+	{Z_1} & {Z_2} \\
+	&& B
+	\arrow["{f_1}", curve={height=-12pt}, from=2-1, to=1-3]
+	\arrow["\sigma", from=2-1, to=2-2]
+	\arrow["{g_1}"', curve={height=12pt}, from=2-1, to=3-3]
+	\arrow["{f_2}"', from=2-2, to=1-3]
+	\arrow["{g_2}", from=2-2, to=3-3]
+\end{tikzcd}\]
+
+Observe que #{A \times B} é um objeto final nessa categoria, e portanto, se uma categoria possui noção de produto, ele deve ser único, a menos de isomorfismo.
+
+Vemos por meio desse exemplo que, apesar de uma construção depender somente de \catname{C}, a categoria onde a construção é objeto inicial ou final pode ter uma estrutura um tanto distante da categoria \catname{C}.
+
+Analogamente, definimos também o coproduto:
+
+\begin{Def}{Propriedade universal do coproduto}{universal-coproduto}
+    Sejam \catname{C} uma categoria e #{A, B \in \catname{C}}. O \textbf{coproduto} de #{A} e #{B} é um objeto #{A \amalg B \in \catname{C}} provido de dois morfismos #{i_A \from A \to  A \amalg B} e #{i_B \from B \to A \amalg B} tais que, para qualquer objeto #{Z} e morfismos #{f_A \from A \to Z} e #{f_B \from B \to Z}, existe um único morfismo #{\sigma \from A \amalg B \to Z} tal que o seguinte diagrama comuta:
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzEsMSwiQSBcXGFtYWxnIEIiXSxbMCwyLCJCIl0sWzIsMSwiWiJdLFsyLDEsImlfQiJdLFswLDEsImlfQSIsMl0sWzIsMywiZl9CIiwyLHsiY3VydmUiOjJ9XSxbMCwzLCJmX0EiLDAseyJjdXJ2ZSI6LTJ9XSxbMSwzLCJcXHNpZ21hIl1d
+    \[\begin{tikzcd}
+    	A \\
+    	& {A \amalg B} & Z \\
+    	B
+    	\arrow["{i_A}"', from=1-1, to=2-2]
+    	\arrow["{f_A}", curve={height=-12pt}, from=1-1, to=2-3]
+    	\arrow["\sigma", from=2-2, to=2-3]
+    	\arrow["{i_B}", from=3-1, to=2-2]
+    	\arrow["{f_B}"', curve={height=12pt}, from=3-1, to=2-3]
+    \end{tikzcd}\]
+\end{Def}
+
+Temos então que o coproduto é o objeto inicial em uma categoria definida de modo análoga à #{\catname{C}_{A, B}}.
+
+Em #{\catname{Set}}, o coproduto correspondente à união disjunta de #{A} e #{B}.
+
+Em \ref{subsec:rmod-produtos}, mostraremos qual é o produto e o coproduto na categoria de principal uso desse texto, chamada de #{_{R}\catname{Mod}}.
+
+Em geral, podemos definir o produto e o coproduto de um número infinito de objetos de modo análogo ao visto aqui, e suas propriedades universais podem ser vistas nos \cref{trma:mod-prod,trma:mod-coprod}.
+
+\subsection{Funtores}
+
+Naturalmente, devemos nos questionar sobre a noção de morfismos entre categorias e quais propriedades esses morfismos devem satisfazer, e a resposta reside no estudo de funtores.
+
+\begin{Def}{Funtor}{funtor}
+    Sejam \catname{C} e \catname{D} duas categorias. Um \textbf{funtor covariante} (ou apenas \textbf{funtor}) #{F \from \catname{C} \to \catname{D}} consiste em:
+    \begin{itemize}
+        \item Uma função #{\Obj(\catname{C}) \to \Obj(\catname{D})}, escrita como #{A \mapsto F(A)}, para cada objeto #{A \in \catname{C}};
+        \item Para cada #{A, B \in \catname{C}}, existe uma função ##{\Hom_\catname{C}(A, B) \to \Hom_\catname{D}(F(A), F(B)),} tal que: 
+        \item Para todo #{f\from A \to B} e #{f' \from B \to C}, vale que ##{F(f' \circ f) = F(f') \circ F(f);}
+        \item #{F(1_A) = 1_{F(A)}}, para todo #{A \in \catname{C}}.
+    \end{itemize}
+
+    Dualmente, podemos obter \textbf{funtores contravariantes} #{\catname{C} \to \catname{D}}, que é um funtor covariante #{\catname{C}^\mathrm{op} \to \catname{D}}. Como ##{\Hom_{\catname{C}^\mathrm{op}}(A, B) = \Hom_\catname{C}(B, A),}
+    segue que um funtor contravariante #{F \from \catname{C} \to \catname{D}} transforma o conjunto de morfismos #{\Hom_\catname{C}(A, B) \to \Hom_\catname{D}(F(B), F(A))}, e a composição de morfismos se torna ##{F(f' \circ f) = F(f) \circ F(f).}
+\end{Def}
+
+Como funtores preservam composições de morfismos, segue que funtores também preservam a comutatividade de diagramas:
+Se o seguinte diagrama % https://q.uiver.app/#q=WzAsNCxbMCwxLCJBIl0sWzEsMCwiQiJdLFsyLDEsIkQiXSxbMSwyLCJDIl0sWzAsMV0sWzEsMl0sWzAsM10sWzMsMl0sWzAsMl1d
+\[\begin{tikzcd}
+	& B \\
+	A && D \\
+	& C
+	\arrow[from=1-2, to=2-3]
+	\arrow[from=2-1, to=1-2]
+	\arrow[from=2-1, to=2-3]
+	\arrow[from=2-1, to=3-2]
+	\arrow[from=3-2, to=2-3]
+\end{tikzcd}\]
+
+comuta, o seguinte diagrama também deve comutar:
+% https://q.uiver.app/#q=WzAsOCxbMCwxLCJGKEEpIl0sWzEsMCwiRihCKSJdLFsyLDEsIkYoRCkiXSxbMSwyLCJGKEMpIl0sWzQsMSwiRyhBKSJdLFs1LDAsIkcoQikiXSxbNSwyLCJHKEMpIl0sWzYsMSwiRyhEKSJdLFswLDFdLFsxLDJdLFswLDNdLFszLDJdLFswLDJdLFs1LDRdLFs2LDRdLFs3LDRdLFs3LDVdLFs3LDZdXQ==
+\[\begin{tikzcd}
+	& {F(B)} &&&& {G(B)} \\
+	{F(A)} && {F(D)} && {G(A)} && {G(D)} \\
+	& {F(C)} &&&& {G(C)}
+	\arrow[from=1-2, to=2-3]
+	\arrow[from=1-6, to=2-5]
+	\arrow[from=2-1, to=1-2]
+	\arrow[from=2-1, to=2-3]
+	\arrow[from=2-1, to=3-2]
+	\arrow[from=2-7, to=1-6]
+	\arrow[from=2-7, to=2-5]
+	\arrow[from=2-7, to=3-6]
+	\arrow[from=3-2, to=2-3]
+	\arrow[from=3-6, to=2-5]
+\end{tikzcd}\]
+
+onde o funtor #{F} é covariante e #{G} é contravariante.
+
+\begin{Exemplo}{Funtores de esquecimento}{}
+Um \textbf{funtor de esquecimento} é um funtor que perde alguma estrutura de uma categoria. Por exemplo, o funtor #{F \from \catname{Grp} \to \catname{Set}} leva grupos aos conjuntos que os compõem, e os homomorfismos de grupo são levados em apenas funções. O funtor #{G \from \catname{Ring} \to \catname{Ab}} que simplesmente esquece a estrutura multiplicativa de um anel.
+\end{Exemplo}
+
+\begin{Exemplo}{Funtores Hom}{funtores-hom}
+    Seja \catname{C} uma categoria. Então, para quaisquer objetos #{A, B \in \catname{C}}, definimos dois funtores:
+    \begin{itemize}
+        \item Um funtor covariante ##{\Hom_\catname{C}(A, -) \from \catname{C} \to \catname{Set},}
+        que leva cada objeto #{X \in \catname{C}} ao conjunto #{\Hom(A, X)} e cada morfismo #{f \from X \to Y} à função #{f_*}, a pós-composição de #{f}, definida por \begin{align*}
+            \Hom_\catname{C}(A, f) \from \Hom_\catname{C}(A, X) &\to \Hom_\catname{C}(A, Y) \\
+            h &\mapsto f \circ h
+        \end{align*}
+        \item Um funtor contravariante ##{\Hom_\catname{C}(-, B) \from \catname{C} \to \catname{Set},}
+        que leva cada objeto #{X \in \catname{C}} ao conjunto #{\Hom(X, B)} e cada morfismo #{g \from X \to Y} ao morfismo #{g^*}, chamado de pré-composição de #{g}, definido por \begin{align*}
+            \Hom(g, B) \from \Hom(Y, B) &\to \Hom(X, B) \\
+            h \mapsto h \circ g
+        \end{align*}
+    \end{itemize}
+\end{Exemplo}
+
+\begin{Def}{Funtores fiéis e plenos}{}
+    Sejam #{\catname{C}} e #{\catname{D}} categorias e seja #{F \from \catname{C} \to \catname{D}} um funtor. Para cada par #{A, B \in \catname{C}}, o funtor #{F} induz uma função ##{F_{A, B} \from \Hom_\catname{C}(A, B) \to \Hom_\catname{D}(F(A), F(B)).} O funtor #{F} é dito
+    \begin{itemize}
+        \item \textbf{fiel} se #{F_{A, B}} é injetora;
+        \item \textbf{pleno} se #{F_{A, B}} é sobrejetora;
+        \item \textbf{plenamente fiel} se #{F_{A, B}} é bijetora.
+    \end{itemize}
+    para todo #{A, B} em #{\catname{C}}.
+\end{Def}
+
+\begin{Def}{Categorias pré-aditivas}{}
+    Uma categoria #{\catname{C}} é dita \textbf{pré-aditiva} se, para todo #{A, B \in \catname{C}}, vale que #{\Hom_\catname{C}(A, B)} é um grupo abeliano, de forma que a composição de morfismos distribui:
+    ##{f(g_1 + g_2) = fg_1 + fg_2 \hspace{30pt}(g_1 + g_2)f = g_1f + g_2f.}
+
+    Nota-se que a operação da qual #{\Hom_\catname{C}(A, B)} é munido não é especificada nessa definição.
+\end{Def}
+
+\begin{Def}{Funtores aditivos}{}
+    Um funtor #{F \from \catname{C} \to \catname{D}} entre categorias pré-aditivas #{\catname{C}, \catname{D}} é dito \textbf{aditivo} se, para todo #{f, g \in \Hom_\catname{C}(A, B)}, tem-se ##{F(f + g) = F(f) + F(g).}
+
+    (Isto é, #{F} é um homomorfismo de grupos #{\Hom_\catname{C}(A, B) \to \Hom_\catname{D}(F(A), F(B))}).
+\end{Def}
+
+\subsection{Transformações Naturais}
+
+\begin{Def}{Transformações Naturais}{}
+    Uma \textbf{transformação natural} entre dois funtores #{F, G \from \catname{C} \to \catname{D}} é uma aplicação #{\eta} denotada #{\eta \from F \to G} que, para cada objeto #{X \in \catname{C}}, associa um morfismo #{\eta(X) \from F(X) \to G(X)} em \catname{D}, de tal forma que os diagramas abaixo são comutativos. 
+    % https://q.uiver.app/#q=WzAsOCxbNCwwLCJGKFgpIl0sWzYsMCwiRihZKSJdLFs0LDIsIkcoWCkiXSxbNiwyLCJHKFkpIl0sWzAsMSwiWCJdLFsyLDEsIlkiXSxbOCwxLCJcXG1hdGhiZntDfSJdLFsxMCwxLCJcXG1hdGhiZntEfSJdLFswLDIsIlxcZXRhKFgpIiwyXSxbMSwzLCJcXGV0YShZKSJdLFsyLDMsIkcoZikiLDJdLFswLDEsIkYoZikiXSxbNCw1LCJmIl0sWzYsNywiRiIsMCx7ImN1cnZlIjotMn1dLFs2LDcsIkciLDIseyJjdXJ2ZSI6Mn1dLFsxMywxNCwiXFxldGEiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
+    \[\begin{tikzcd}
+    	&&&& {F(X)} && {F(Y)} \\
+    	X && Y &&&&&& {\mathbf{C}} && {\mathbf{D}} \\
+    	&&&& {G(X)} && {G(Y)}
+    	\arrow["{F(f)}", from=1-5, to=1-7]
+    	\arrow["{\eta(X)}"', from=1-5, to=3-5]
+    	\arrow["{\eta(Y)}", from=1-7, to=3-7]
+    	\arrow["f", from=2-1, to=2-3]
+    	\arrow[""{name=0, anchor=center, inner sep=0}, "F", curve={height=-12pt}, from=2-9, to=2-11]
+    	\arrow[""{name=1, anchor=center, inner sep=0}, "G"', curve={height=12pt}, from=2-9, to=2-11]
+    	\arrow["{G(f)}"', from=3-5, to=3-7]
+    	\arrow["\, \eta", between={0.2}{0.8}, Rightarrow, from=0, to=1]
+    \end{tikzcd}\]
+    
+    Se todo #{\eta(X)} é um isomorfismo, diz-se que #{\eta} é um \textbf{isomorfismo natural}, e denotamos #{F \cong G}.
+\end{Def}
+
+% \begin{Def}{Funtores adjuntos}{funtores-adjuntos}
+%     Uma adjunção de categorias \catname{C} e \catname{D} é um par de funtores #{F \from \catname{D} \to \catname{C}} e #{G \from \catname{C} \to \catname{D}} tais que, para quaisquer objetos #{C \in \catname{C}} e #{D \in \catname{D}}, vale que ##{\Hom_\catname{C}(F(D), C) \cong \Hom_\catname{D}(D, G(C))} são naturalmente isomorfos. 
+    
+%     Isto é, para cada #{C \in \catname{C}}, temos ##{\Hom_\catname{C}(F(-), C) \cong \Hom_\catname{D}(-, G(C))} e para cada #{D \in \catname{D}}, temos também ##{\Hom_\catname{C}(F(D), -) \cong \Hom_\catname{D}(D, G(-)).}
+
+%     Então #{F} é dito \textbf{adjunto à esquerda}, enquanto #{G} é dito \textbf{adjunto à direita}.
+% \end{Def}
+
+%\begin{Exemplo}{Abelianização}{abelianização}
+%    Defina um funtor #{\mathrm{Ab} \from \catname{Grp} \to \catname{Grp}} da seguinte forma:
+
+%    \begin{itemize}
+%        \item Para qualquer grupo #{G \in \catname{Grp}}, defina #{\mathrm{Ab}(G) = G/[G, G]} como sua abelianização.
+%        \item Para qualquer homomorfismo #{f \from G \to H} em \catname{Grp}, vale que #{\mathrm{Ab}(f)}
+%    \end{itemize}
+%\end{Exemplo}
+
+\section{Grupos Livres}
+%https://math.stackexchange.com/questions/3904140/details-of-defining-free-group-in-terms-of-universalproperty
+Para definir homologia, precisaremos do conceito de grupo abeliano livre, que por sua vez, requer o conceito de grupo livre, se baseando no capítulo relevante em \cite[Cap. II-~5]{aluffi2009algebra}.
+
+Dado um conjunto #{A} arbitrário, o grupo livre #{F_A} é o grupo gerado por concatenações de elementos de #{A}. Ele também pode ser definido através da seguinte propriedade universal, que também nos informa que existe um único grupo livre, a menos de isomorfismo:
+
+\begin{Def}{Grupo livre}{grupo-livre}
+    Seja #{A} um conjunto. #{F_A} é dito seu grupo livre se existe #{\iota : A \to F_A} tal que, para todo grupo #{G} e #{f: A \to G} existe um \textit{único} homomorfismo de grupos #{\phi : F_A \to G} tal que o seguinte diagrama comuta:
+    % https://q.uiver.app/#q=WzAsMyxbMCwxLCJBIl0sWzAsMCwiRl9BIl0sWzEsMCwiRyJdLFswLDIsImYiLDJdLFswLDEsIlxcaW90YSJdLFsxLDIsIlxcdmFycGhpIl1d
+    \[\begin{tikzcd}
+    	{F_A} & G \\
+    	A
+    	\arrow["\varphi", from=1-1, to=1-2]
+    	\arrow["\iota", from=2-1, to=1-1]
+    	\arrow["f"', from=2-1, to=1-2]
+    \end{tikzcd}\]
+\end{Def}
+
+Observe que #{F_A} é o objeto inicial da categoria #{\mathcal{C}_A}, definida da seguinte forma: seus objetos são da forma #{(G, \iota)} onde #{G} é um grupo e #{\iota: A \to G}, e seus morfismos #{(G_1, \iota_1) \to (G_2, \iota_2)} são da forma #{\{\phi \from G_1 \to G_2 : \phi \text{ é homomorfismo de grupos e } \phi \circ \iota_1 = \iota_2\}}. Portanto, pelo teorema \ref{trma:abstract-nonsense}, todos os grupos livres de #{A} são isomorfos.
+
+Com a unicidade demonstrada, resta mostrar a existência de um grupo livre para #{A}.
+
+Intuitivamente, um grupo livre é o conjunto das palavras que podem ser formadas com um alfabeto #{A} juntamente com suas inversas. Assim, uma palavra #{w} no alfabeto #{A} é um conjunto ordenado #{(a_1, \cdots, a_n)}, que será escrito como #{w = a_1 \cdots a_n}, para #{a_i \in A} ou #{a_i^{-1} \in A}. No entanto, desejamos que a palavra #{aa^{-1} a b} seja igual a #{ab}. Portanto, precisamos antes reduzir essas palavras, e o conjunto das palavras reduzidas munido da operação de concatenação é o nosso grupo livre #{F_A}.
+
+O grupo livre definido dessa forma satisfaz a propriedade universal descrita acima, ao fixarmos #{\iota \from A \to F_A} por #{a \mapsto a}, e assim, para todo grupo #{G} e #{f \from A \to G}, podemos estender #{f} a um homomorfismo #{\phi\from F_A \to G} tal que #{\phi(a) = f(a)} e #{\phi(a^{-1}) = f(a)^{-1}} para todo #{a \in A}, de modo que #{\phi(w w') = \phi(w) \phi(w')}. Observe também que, por construção, #{\phi \circ \iota = f}, uma vez que #{\phi(a) = f(a)} para #{a \in A}. 
+
+Então, de fato, existe um grupo livre #{F_A} para todo conjunto #{A}.
+
+Agora, definiremos o que é a abelianização de um grupo #{G}: Dados dois elementos #{g, h \in G}, definimos seu comutador como #{[g, h] = g^{-1}h^{-1}gh}, e o subgrupo comutador #{[G, G]} é o subgrupo de #{G} gerado por todos os comutadores. Sejam agora #{u \in [G, G]} e #{g \in G}, temos que #{[g, u] = g^{-1}u^{-1}gu \in [G, G]}. Desse modo, #{[g, u]u^{-1} = g^{-1}u^{-1}guu^{-1} = g^{-1}u^{-1}g \in [G, G]}, e portanto #{[G, G]} é normal, e portanto #{G / [G, G]} é um grupo quociente abeliano, já que, para #{g, h \in [G, G]}, #{g^{-1}h^{-1}gh = e \implies gh = hg}. Esse processo define um funtor #{F \from \catname{Grp} \to \catname{Ab}}.
+
+Finalmente, podemos definir o que é um grupo abeliano livre, que nada mais é do que a abelianização do grupo livre de um conjunto. Esse processo preserva os geradores de #{F_A}, isto é, o grupo abeliano livre ainda é gerado pelos elementos de #{A}.
+
+\section{R-módulos}
+
+\begin{Def}{$R$-módulo à esquerda}{}
+    Sejam #{R} um anel associativo com unidade e #{(M, +)} um grupo abeliano. Então #{M} é dito um \textit{$R$-módulo à esquerda} se existe uma operação \begin{align*}
+        \cdot \from R \times M &\to M \\
+        (r, m) &\mapsto rm
+    \end{align*}
+
+    tal que, para todo #{m_1, m_2 \in M} e #{r_1, r_2 \in R}, vale:
+
+    \begin{enumerate}
+        \item #{r_1(m_1 + m_2) = r_1m_1 + r_1m_2};
+        \item #{(r_1 + r_2)m_1 = r_1 m_1 + r_2 m_1};
+        \item #{(r_1r_2)m_1 = r_1(r_2 m_1)};
+        \item #{1m_1 = m_1}.
+    \end{enumerate}
+\end{Def}
+
+Se a terceira condição for substituída por #{(r_1 r_2)m_1 = r_2(r_1m_1)}, #{M} é dito um \textbf{$R$-módulo à direita}, e se #{R} é comutativo (que será o caso onde trabalharemos), a distinção entre os dois conceitos é inexistente.
+
+Uma segunda forma (equivalente) de definir #{R}-módulos é por meio de um análogo em anéis do conceito de ações de grupo. Para #{M} um grupo abeliano, seus endomorfismos formam um anel, cujas operações são soma pontual e composição. Então uma ação à esquerda de #{R} em #{M} é um homomorfismo de anéis ##{\sigma \from R \to \End_{\catname{Ab}}(M),}
+e a existência de um tal #{\sigma} torna #{M} um #{R}-módulo à esquerda, com #{r \cdot m \defeq \sigma(r)(m)}. Para definir um #{R}-módulo à direita, basta tomar como domínio de #{\sigma} o anel #{R^o}, construído a partir do anel #{R} mas com multiplicação substituída por #{a \bullet b = ba}, e então, para #{\sigma \from R^o \to \End_{\catname{Ab}}(M)}, #{M} é um #{R^o} módulo à esquerda onde #{\sigma(r_2r_1) = \sigma(r_1 \bullet r_2) = \sigma(r_1) \circ \sigma(r_2)}, condizendo com a definição de #{R}-módulo à direita dada anteriormente.
+
+\begin{Def}{Homomorfismo de #{R}-módulos à esquerda}{}
+    Sejam #{M, N} dois #{R}-módulos à esquerda. Uma função #{f \from M \to N} tal que 
+    \begin{enumerate}
+        \item #{f(m_1 + m_2) = f(m_1) + f(m_2)};
+        \item #{f(rm_1) = rf(m_1)}
+    \end{enumerate}
+    para todo #{m_1, m_2 \in M} e #{r \in R} é dita um \textbf{homomorfismo de #{R}-módulos} à esquerda, também chamada de #{R}-homomorfismo.
+\end{Def}
+
+Se #{f} é bijetora, então ela é chamada de isomorfismo de #{R}-módulos à esquerda.
+
+\begin{Def}{Submódulos}{}
+    Para #{M} um #{R}-módulo à esquerda e #{N} um subgrupo de #{(M, +)}, se para todo #{n \in N} e #{r \in R} vale que #{rn \in N}, #{N} é dito um \textbf{submódulo} de #{M}. Evidentemente, #{N} é um #{R}-módulo à esquerda.
+\end{Def}
+
+
+Observe que, como #{\Z} é inicial em #{\catname{Ring}}, existe um único homomorfismo de #{\Z} em #{\End_{\catname{Ab}} (G)}, para todo grupo abeliano #{G}. Pela segunda definição de #{R}-módulo, #{G} é um #{\Z}-módulo à esquerda, definido de maneira canônica.
+
+Como a composição de dois #{R}-homomorfismos é um #{R}-homomorfismo e a função identidade também é um #{R}-homomorfismo, os #{R}-módulos à esquerda formam uma categoria, chamada de #{_{R}\catname{Mod}}. Pelo argumento anterior do parágrafo anterior, #{{}_\Z\catname{Mod}} é isomorfa a #{\catname{Ab}}.
+
+Observe que, para #{M, N \in \Rmod}, vale também que o conjunto dos homomorfismos lineares de #{M} em #{N}, #{\Hom_R(M, N)}, também pertence a #{\Rmod}: para #{f, g \in \Hom(M, N)}, podemos definir #{(f + g)(x)} por #{f(x) + g(x)} e multiplicação por escalares por #{(rf)(x) = r(f(x))}. De fato, resta apenas mostrar que #{rf} ainda é um homomorfismo de módulos. Mas #{rf} o é, uma vez que ##{(rf)(x + x') = r(f(x + x')) = r(f(x) + f(x')) = (rf)(x) + (rf)(x'),} e também ##{r'(rf) = r'(r(f(x))) = r(r'(f(x))) = r(f(r'x)) = (rf)(r'x).}
+
+Dado um #{R}-homomorfismo #{f\from M \to N}, #{\ker f} é um submódulo de #{M}, e #{\im f} é um submódulo de #{N}.
+
+Se #{N} é um submódulo de #{M}, então #{N} é um subgrupo (que é normal, já que #{(M, +)} é abeliano), e desse modo podemos definir o quociente #{M/N} como um grupo abeliano. Para dar #{M/N} a estrutura de #{R}-módulo à esquerda, escolhemos-na de modo a tornar a projeção #{\pi \from M \to M/N} um #{R}-homomorfismo. Então ##{r(m + N) = r\pi(m) = \pi(rm) = rm + N,}
+para todo #{r \in R, m \in M}. Dessa forma, #{r(m + N) = rm + N}.
+
+
+Temos então a propriedade universal de quocientes:
+\begin{Trma}{Propriedade universal de quocientes dos #{R}-módulos à esquerda}{}
+    Sejam #{N} um submódulo à esquerda de um #{R}-módulo à esquerda #{M}. Então, para todo #{R}-homomorfismo #{f \from M \to P} tal que #{N \subset \ker f}, existe um único #{R}-homomorfismo #{\, \tilde{f} \from M / N \to P} tal que o seguinte diagrama comuta:
+
+   % https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzIsMCwiUCJdLFsxLDEsIk0vTiJdLFswLDIsIlxccGkiLDJdLFswLDEsIlxcdmFycGhpIl0sWzIsMSwiXFx0aWxkZXtcXHZhcnBoaX0iLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+    \[\begin{tikzcd}
+    	M && P \\
+    	& {M/N}
+    	\arrow["f", from=1-1, to=1-3]
+    	\arrow["\pi"', from=1-1, to=2-2]
+    	\arrow["{\tilde{f}}"', dashed, from=2-2, to=1-3]
+    \end{tikzcd}\]
+\end{Trma}
+
+Como em outras categorias, todo #{R}-homomorfismo #{f \from M \to N} pode ser decomposto da seguinte forma: 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJNIl0sWzEsMCwiTS8gXFxrZXIgZiJdLFsyLDAsIlxcbWF0aHJte2ltfSBmIl0sWzMsMCwiTiJdLFswLDMsImYiLDAseyJjdXJ2ZSI6LTR9XSxbMCwxLCJcXHBpIiwyXSxbMSwyLCJcXHRpbGRle1xcdmFycGhpfSIsMl0sWzIsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XV0=
+\[\begin{tikzcd}
+	M & {M/ \ker f} & {\mathrm{im} f} & N
+	\arrow["\pi"', from=1-1, to=1-2]
+	\arrow["f", curve={height=-24pt}, from=1-1, to=1-4]
+	\arrow["{\tilde{f}}"', from=1-2, to=1-3]
+	\arrow[hook, from=1-3, to=1-4]
+\end{tikzcd}\]
+
+onde #{\tilde{f}} é um isomorfismo induzido por #{f}.
+
+Uma consequência imediata:
+
+\begin{Clrio}{Primeiro teorema do isomorfismo}{1-iso}
+    Para #{f \from M \to N} um #{R}-homomorfismo sobrejetor, então ##{N \cong \frac{M}{\ker f}}
+\end{Clrio}
+
+\begin{Prop}{Segundo teorema do isomorfismo}{}
+    Sejam #{N, P} submódulos de um #{R}-módulo à esquerda #{M} tal que #{N \subset P}. Então #{P/N} é um submódulo de #{M/N}, e ##{\frac{M/N}{P/N} \cong \frac{M}{P}}
+\end{Prop}
+
+\begin{Prop}{Terceiro teorema do isomorfismo}{}
+    Sejam #{N, P} submódulos à esquerda de um #{R}-módulo à esquerda #{M}. Então #{N + P} é um submódulo de #{M}, #{N \cap P} é um submódulo de #{P} e ##{\frac{N + P}{N} \cong \frac{P}{N \cap P}}
+\end{Prop}
+
+Mais geralmente, a soma #{\sum_i N_i} e a interseção #{\bigcap_i N_i} de uma família #{(N_i)_i} de submódulos de um #{R}-módulo à esquerda #{M} são também submódulos de #{M}.
+
+\subsection{Produtos e coprodutos em \texorpdfstring{${}_R \catname{Mod}$}{RMod}}\label{subsec:rmod-produtos}
+
+Daqui em diante, #{R}-módulos à esquerda serão chamados apenas de ``módulos'' e #{R}-homomorfismos de ``homomorfismos'' e #{R} é um anel associativo com unidade.
+
+\begin{Def}{Produto direto de #{R}-módulos}{}
+    Seja #{\{M_i\}_{i \in I}} uma família de #{R}-módulos. O \textbf{produto direto} de #{\{M_i\}_{i \in I}}, denotado por ##{\prod_{i \in I} M_i,} é o #{R}-módulo à esquerda definido no conjunto #{\Pi_{i \in I} M_i} com adição ##{\{v_i\}_{i \in I} + \{w_i\}_{i \in I} = \{v_i + w_i\}_{i \in I},} e ação ##{r\{v_i\}_{i \in I} = \{rv_i\}_{i \in I}.}
+\end{Def}
+
+Veja também que o produto direto satisfaz a propriedade universal de produtos:
+
+\begin{Trma}{Produto direto é um produto categórico}{mod-prod}
+    Seja #{\{M_i\}_{i \in I}} uma família de #{R}-módulos. Dados um #{R}-módulo #{P} e uma coleção de homomorfismos #{\{\phi_k \from P \to M_k\}_{k \in I}}, existe um único homomorfismo #{\phi \from P \to \prod_{i \in I} M_i} tal que o seguinte diagrama comuta:
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHByb2RfaSBNX2kiXSxbMSwwLCJNX2siXSxbMCwxLCJQIl0sWzIsMCwiXFx2YXJwaGkiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwxLCJcXHBpX2siXSxbMiwxLCJcXHZhcnBoaV9rIiwyXV0=
+    \[\begin{tikzcd}
+    	{\prod_{i \in I} M_i} & {M_k} \\
+    	P
+    	\arrow["{\pi_k}", from=1-1, to=1-2]
+    	\arrow["\varphi", dashed, from=2-1, to=1-1]
+    	\arrow["{\varphi_k}"', from=2-1, to=1-2]
+    \end{tikzcd}\]
+
+    Isto é, o produto direto satisfaz a propriedade universal de produto (vista em \cref{def:universal-produto}).
+\end{Trma}
+
+\begin{proof}
+    Seja #{j \in I} arbitrário. Queremos mostrar que #{\pi_j}, a projeção da #{j}-ésima coordenada, é um homomorfismo sobrejetor. Claramente #{\pi_j} é sobrejetor, e também é homomorfismo, uma vez que dados #{x, y \in \prod_{i \in I} M_i}, ##{\pi_j(x + y) = \pi_j(\{x_i\}_{i \in I} + \{y_i\}_{i \in I})= \pi_j(\{x_i + y_i\}_{i \in I}) = x_j + y_j = \pi_j(x) + \pi_j(x),} e dado #{r \in R}, ##{\pi_j(rx) = \pi_j(r\{x_i\}_{i \in I}) = \pi_j(\{rx_i\}_{i \in I}) = rx_j = r\pi_j(x).}
+
+    Agora, tome #{\phi} tal que, para #{p \in P}, #{\phi(p) = \{\phi_i(p)\}_{i \in I}}. Em outras palavras, escolhemos #{\phi} de modo que o diagrama acima comuta. Tome também #{p' \in P}. Então ##{\phi(p + p') = \{\phi_i(p + p')\}_{i \in I} = \{\phi_i(p) + \phi_i(p')\}_{i \in I} = \{\phi_i(p)\}_{i \in I} + \{\phi_i(p')\}_{i \in I} = \phi(p) + \phi(p').}
+
+    Ao mesmo tempo, tome #{r \in R}, e temos ##{\phi(rp) = \{\phi_i(rp)\}_{i \in I} = \{r\phi_i(p)\}_{i \in I} = r\{\phi_i(p)\}_{i \in I} = r\phi(p).}
+    Portanto #{\phi} é homomorfismo. A unicidade de #{\phi} é evidente: se existe outra #{\phi'} de modo que o diagrama acima comuta, ela precisaria concordar com #{\phi_i} em cada coordenada #{i \in I}, que é exatamente a definição de #{\phi}.
+\end{proof}
+
+\begin{Def}{Soma direta de módulos}{}
+    Seja #{\{M_i\}_{i \in I}} uma família arbitrária de #{R}-módulos. Então sua \textbf{soma direta} #{\bigoplus_{i \in I} M_i} é o submódulo de #{\prod_{i \in I} M_i} formado pelos elementos #{\{x_i\}_{i \in I} \in \prod_{i \in I} M_i} tais que #{|\{x_i: x_i \neq 0_{M_i}\}| < \aleph_0}.
+\end{Def}
+
+\begin{Trma}{Soma direta é um coproduto categórico}{mod-coprod}
+    Seja #{\{M_i\}_{i \in I}} uma família de #{R}-módulos. Dados um #{R}-módulo #{P} e uma coleção de homomorfismos #{\{\psi_k \from M_k \to P\}_{k \in I}}, existe um único homomorfismo #{\psi \from \bigoplus_{i \in I} M_i \to P} tal que o seguinte diagrama comuta:
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXGJpZ29wbHVzX3tpIFxcaW4gSX0gTV9pIl0sWzEsMCwiTV9rIl0sWzAsMSwiUCJdLFswLDIsIlxccHNpIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMCwiXFxpb3RhX2siLDJdLFsxLDIsIlxccHNpX2siXV0=
+    \[\begin{tikzcd}
+    	{\bigoplus_{i \in I} M_i} & {M_k} \\
+    	P
+    	\arrow["\psi"', dashed, from=1-1, to=2-1]
+    	\arrow["{\iota_k}"', from=1-2, to=1-1]
+    	\arrow["{\psi_k}", from=1-2, to=2-1]
+    \end{tikzcd}\]
+
+    Isto é, a soma direta satisfaz a propriedade universal do coproduto (vista na \cref{def:universal-coproduto}).
+\end{Trma}
+
+\begin{proof}
+    Para todo #{\{x_i\}_{i \in I} = x \in \bigoplus_{i \in I} M_i}, defina ##{\psi(x) \defeq \sum_{i \in I} \psi_i(x_i).} 
+    #{\psi} está bem definida pois #{x_i \neq 0} apenas para um número finito de índices, e claramente faz o diagrama acima comutar.
+    Tome agora também #{y = \{y_i\}_{i \in I}}, e temos ##{\psi(x + y) = \sum_{i \in I} \psi_i(x_i + y_i) = \sum_{i \in I} \psi_i(x_i) + \psi_i(y_i) = \sum_{i \in I} \psi_i(x_i) + \sum_{i \in I} \psi_i(y_i) = \psi(x) + \psi(y).}
+    Para #{r \in R} arbitrário, também temos ##{\psi(rx) = \sum_{i \in I} \psi_i(rx_i) = \sum_{i \in I} r\psi_i(x_i) = r\sum_{i \in I} \psi_i(x_i) = r\psi(x).}
+    Portanto #{\psi} é homomorfismo. Ao mesmo tempo, é evidente que a condição de que #{\psi \circ \iota_k = \psi_k} faz com que esse homomorfismo seja único.
+\end{proof}
+
+\begin{Obs}{}{}
+    Se #{I} é um conjunto finito, o produto direto e a soma direta coincidem, e o ambos viram produtos e coprodutos.
+\end{Obs}
+
+\subsection{Módulos livres}
+
+\begin{Def}{Conjunto gerador de um módulo}{}
+    Dados um #{R}-módulo #{M} e um subconjunto #{S \subset M}, então #{S} é dito um \textbf{conjunto gerador} de #{M} se, dado #{m \in M} arbitrário, ele pode ser escrito como combinação linear de elementos de #{S} com coeficientes em #{R}.
+
+    Um #{R}-módulo #{M} é dito \textbf{finitamente gerado} se admite um conjunto gerador de cardinalidade finita. Se esse conjunto gerador for unitário, #{M} é dito \textbf{cíclico}.
+\end{Def}
+
+\begin{Def}{Base de um módulo}{}
+    Dados um #{R}-módulo #{M} e #{B} um conjunto gerador de #{M}, #{B} é dito uma \textbf{base} para #{M} se seus elementos são linearmente independentes. Isto é, para #{b_1, \cdots, b_n\in B} e #{r_1, \cdots, r_n \in R}, se #{r_1b_1 + \cdots + r_nb_n = 0_M}, então necessariamente #{r_1 = \cdots = r_n = 0_R}.
+
+    Um módulo que admite base é chamado de \textbf{módulo livre}. (O adjetivo ``livre'' não se repete à toa da \cref{def:grupo-livre} -- ambos podem ser gerados a partir de um determinado conjunto, nosso #{B} é o equivalente do #{A} na definição de grupo livre.)
+\end{Def}
+
+À título de exemplo, a soma direta de módulos livres é um módulo livre, todo espaço vetorial é um módulo livre, e todo anel é um módulo cíclico livre sobre si próprio, com base #{\{1\}}.
+
+\begin{Prop}{}{equiv-livre}
+    Seja #{M} um #{R}-módulo. As seguintes afirmações são equivalentes:
+
+    \begin{enumerate}
+        \item #{M} é livre;
+        \item Existe uma família de submódulos cíclicos #{\{N_i\} \subset M} com #{N_i \cong R} tais que #{M \cong \bigoplus_i N_i};
+        \item Existe um conjunto #{X \neq \emptyset} tal que #{M \cong \bigoplus_{x \in X} R}. Se #{|X| < \aleph_0}, podemos escrever também #{M \cong \underbrace{R \oplus \cdots \oplus R}_{|X| \text{ vezes}}};
+        \item Existe um conjunto #{X \neq \emptyset} e uma inclusão #{\iota \from X \to M} tal que para todo #{R}-módulo #{N} e função #{\phi \from X \to N}, existe um único homomorfismo #{\overline{\phi} \from M \to N} tal que o seguinte diagrama comuta:
+        % https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiTSJdLFsxLDEsIk4iXSxbMCwxLCJcXGlvdGEiXSxbMCwyLCJcXHZhcnBoaSIsMl0sWzEsMiwiXFxvdmVybGluZXtcXHZhcnBoaX0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+        \[\begin{tikzcd}
+        	X & M \\
+        	& N
+        	\arrow["\iota", from=1-1, to=1-2]
+        	\arrow["\varphi"', from=1-1, to=2-2]
+        	\arrow["{\overline{\varphi}}", dashed, from=1-2, to=2-2]
+        \end{tikzcd}\]
+
+        Em palavras, temos #{\overline{\phi}\left(\sum_{x \in X} r_xe_x\right) = \sum_{x \in X} r_x \phi(x)}, onde #{r_x \in R} e #{\iota(x) = e_x = \{\delta_x(y)\}_{y \in X}} tal que ##{\delta_x(y) = \begin{cases}1, & \text{se } y = x \\ 0, &\text{se } y \neq x\end{cases}}
+    \end{enumerate}
+\end{Prop}
+
+Observe que #{(3) \implies (4)} é essencialmente um corolário da propriedade universal da soma direta, e as outras implicações são autoevidentes.
+
+Pela propriedade universal da \cref{prop:equiv-livre}, podemos concluir que todo homomorfismo #{f \from M \to N}, para #{M} livre, é determinado pelos valores de #{f} em uma base de #{M} (i.e., dado #{\overline{\phi}} na \cref{prop:equiv-livre}, podemos escolher #{\phi} de modo que a propriedade universal valha, e essa #{\phi} exatamente a mesma informação que #{\overline{\phi}}).
+
+\begin{Prop}{}{}
+    Seja #{R} um anel comutativo. Então #{\bigoplus_{x \in X} R \cong \bigoplus_{y \in Y} R} se, e somente se, #{|X| = |Y|}. 
+\end{Prop}
+
+\begin{Clrio}{Posto de um #{R}-módulo}{}
+    Se #{M} é um #{R}-módulo livre, então, para um conjunto #{X} tal que #{M = \bigoplus_{x \in X} R}, chamamos #{|X|} de \textbf{posto} de #{M}.
+\end{Clrio}
+
+\begin{Def}{Anulador de um módulo}{}
+    Dados um #{R}-módulo #{M} e um subconjunto #{S \subset M}, o conjunto ##{\Ann(S) \defeq \{a \in R : am = 0, \forall m \in S\} \subset R}
+    é chamado de \textbf{anulador} de #{S}. Se #{\Ann(M) = \{0\}}, #{M} é dito um \textbf{$R$-módulo fiel}.
+
+    Se #{S = \{x\}}, denotaremos #{\Ann(\{x\})} por #{\Ann(x)}.
+\end{Def}
+
+\begin{Def}{Torção}{}
+    Um elemento #{m \in M} é dito \textbf{livre} se #{\Ann(m) = \{0\}}. Do contrário, #{m} é dito \textbf{elemento de torção}. #{M} é dito \textbf{livre de torção} se todos seus elementos não nulos são livres, \textbf{com torção} se #{M} possui pelo menos um elemento de torção não nulo, e \textbf{de torção} se todos os seus elementos são de torção.
+\end{Def}
+
+Por exemplo, todo grupo abeliano finito é um #{\Z}-módulo de torção.
+
+\subsection{Produto Tensorial de R-módulos}
+Ao longo dessa seção, #{R} denotará um anel comutativo, associativo e com unidade.
+
+\begin{Def}{Funções #{R}-bilineares}{}
+    Sejam #{M, N, P} #{R}-módulos. Uma função #{\phi \from M \times N \to P} é dita #{R}-bilinear se
+    \begin{enumerate}
+        \item Para todo #{m \in M}, a função #{n \mapsto \phi(m, n)} é um homomorfismo;
+        \item Para todo #{n \in N}, a função #{m \mapsto \phi(m, n)} é um homomorfismo.
+    \end{enumerate}
+\end{Def}
+
+Uma vez que a #{\phi} não é um homomorfismo, nosso objetivo é estender a teoria já construída para os homomorfismos para as aplicações #{R}-bilineares. Para esse fim, construímos o seguinte módulo:
+\begin{Def}{Produto tensorial de #{R}-módulos}{produto-tensorial}
+    Dados #{M, N, P} #{R}-módulos, o \textbf{produto tensorial} de #{M} e #{N} sobre #{R}, denotado #{M \otimes_R N}, é um #{R}-módulo com uma aplicação R-bilinear ##{\otimes \from M \times N \to M \otimes_R N} tal que todo mapa #{R}-bilinear #{\phi \from M \times N \to P} é fatorado unicamente por #{\otimes}, isto é, existe um único homomorfismo #{\overline{\phi} \from M \otimes_R N \to P} tal que o seguinte diagrama comuta:
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIFxcdGltZXMgTiJdLFsxLDAsIlAiXSxbMCwxLCJNIFxcb3RpbWVzX1IgTiJdLFswLDEsIlxcdmFycGhpIl0sWzAsMiwiXFxvdGltZXMiLDJdLFsyLDEsIlxcb3ZlcmxpbmV7XFx2YXJwaGl9IiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \[\begin{tikzcd}
+    	{M \times N} & P \\
+    	{M \otimes_R N}
+    	\arrow["\varphi", from=1-1, to=1-2]
+    	\arrow["\otimes"', from=1-1, to=2-1]
+    	\arrow["{\overline{\varphi}}"', dashed, from=2-1, to=1-2]
+    \end{tikzcd}\]
+
+    Essa é a \textbf{propriedade universal} do produto tensorial de #{R}-módulos.
+\end{Def}
+
+Note que, por termos definido o produto tensorial por uma propriedade universal, o produto tensorial e o produto bilinear #{\otimes} são únicos à menos de isomorfismo.
+
+Observe também que o subscrito #{R} em #{\otimes_R} é relevante -- #{M} e #{N} podem ser tanto #{R}-módulos quanto #{S}-módulos, e a estrutura de mapas bilineares sobre #{S} ou sobre #{R} é diferente, e portanto, o anel onde se está operando é importante.
+
+O que demonstramos é que se o produto tensorial existe, ele é único. Resta mostrar sua existência, que é um tanto laboriosa e não é particularmente reveladora. Ela pode ser verificada em \cite{aluffi2009algebra}.
+
+A aplicação bilinear #{\otimes \from M \times N \to M \otimes_R N} será denotada por #{\otimes(m, n) = m \otimes n}.
+
+\begin{Prop}{Geradores de #{M \otimes N}}{}
+    Todo elemento de #{M \otimes_R N} pode ser escrito de forma única como #{\sum_i m_i \otimes n_i}, para #{m_i \in M} e #{n_i \in N}. 
+
+    Ademais, se dois homomorfismos #{f, g \from M \otimes_R N \to P} coincidem em tensores da forma #{m \otimes n}, necessariamente #{m = n}.
+\end{Prop}
+
+\begin{proof}
+    Sejam #{L} o submódulo de #{M \otimes_R N} gerado por #{ \sum_i m_i \otimes n_i}, e #{Q = \faktor{M \otimes_R N}{L}}, com #{\pi_Q} a sua projeção correspondente. Portanto, por construção, #{\pi_Q \circ \otimes = 0}, mas ao mesmo tempo, #{0 \circ \otimes = 0}. Dessa forma, pela unicidade da propriedade universal, temos #{\pi_Q = 0} e portanto #{Q = \{0\}}, donde concluímos que #{L = M \otimes_R N}.
+
+    A segunda afirmação pode ser demonstrada ao observar que #{m \otimes n}, para #{m \in M} e #{n \in N}, gera o módulo #{M \otimes_R N}, pelo parágrafo anterior. Assim, #{f} e #{g} coincidem no conjunto gerador de #{M \otimes_R N}, e portanto #{f = g}.
+\end{proof}
+
+ \begin{Prop}{Propriedades do produto tensorial}{tensorial-props}
+     Sejam #{R \in \catname{CRing}} e #{L, M, N \in \Rmod}. Então
+     \begin{itemize}
+         \item #{R \otimes_R M \cong M};
+         \item #{M \otimes_R N \cong N \otimes_R M};
+         \item #{L \otimes_R (M \otimes_R N) \cong (L \otimes_R M) \otimes_R N}.
+     \end{itemize}
+\end{Prop}
+
+% \begin{proof}
+    
+% \end{proof}
+
+\section{Sequências exatas}
+
+\begin{Def}{Complexo de cadeias}{}
+    Um complexo de cadeias de #{R}-módulos é uma sequência de #{R}-módulos #{M_i} e #{R}-homomorfismos #{d_i}
+    % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXGNkb3RzIl0sWzEsMCwiTV97aSsxfSJdLFsyLDAsIk1faSJdLFszLDAsIk1fe2ktMX0iXSxbNCwwLCJcXGNkb3RzIl0sWzAsMSwiZF97aSsyfSJdLFsxLDIsImRfe2krMX0iXSxbMiwzLCJkX2kiXSxbMyw0LCJkX3tpLTF9Il1d
+    \[\begin{tikzcd}
+    	\cdots & {M_{i+1}} & {M_i} & {M_{i-1}} & \cdots
+    	\arrow["{d_{i+2}}", from=1-1, to=1-2]
+    	\arrow["{d_{i+1}}", from=1-2, to=1-3]
+    	\arrow["{d_i}", from=1-3, to=1-4]
+    	\arrow["{d_{i-1}}", from=1-4, to=1-5]
+    \end{tikzcd}\]
+
+    tal que, para todo #{i \in \Z}, vale que #{d_i \circ d_{i+1} = 0} (ou #{d^2 = 0}).
+\end{Def}
+
+Os #{R}-homomorfismos #{d_i} são chamados de #{i}-ésimo operador bordo ou diferencial de dimensão #{i}, e, suprimindo o índice, #{d} é chamado de apenas operador bordo ou diferencial. Os #{R}-módulos #{M_i} são chamados de #{n}-cadeias.
+
+\begin{Def}{Sequência exata}{}
+    Para #{(M_\bullet, d_\bullet)} um complexo de cadeias, diz-se que o complexo é \textbf{exato} em #{M_i} se #{\im_{d_{i+1}} = \ker d_i}. Em analogia com o que veremos no próximo capítulo, também podemos dizer que o complexo possui homologia nula em #{M_i}.
+
+    Um complexo é chamado de \textbf{sequência exata} se é exato para todo #{M_i}.
+\end{Def}
+
+\begin{Obs}{}{exata-mono}
+        O complexo 
+        % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXGNkb3RzIl0sWzEsMCwiMCJdLFsyLDAsIkwiXSxbMywwLCJNIl0sWzQsMCwiXFxjZG90cyJdLFswLDFdLFsxLDJdLFsyLDMsImYiXSxbMyw0XV0=
+    \[\begin{tikzcd}
+    	\cdots & 0 & L & M & \cdots
+    	\arrow[from=1-1, to=1-2]
+    	\arrow[from=1-2, to=1-3]
+    	\arrow["f", from=1-3, to=1-4]
+    	\arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    é exato em #{L} se, e somente se, #{f} é um monomorfismo. Veja que, como o homomorfismo trivial #{0 \to L} possui como imagem #{0}, para que a sequência seja exata em #{L}, precisamos que #{\ker f = 0}, isto é, que #{f} seja injetora.
+\end{Obs}
+
+\begin{Obs}{}{}
+    O complexo 
+    % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXGNkb3RzIl0sWzIsMCwiTiJdLFsxLDAsIk0iXSxbMywwLCIwIl0sWzQsMCwiXFxjZG90cyJdLFswLDJdLFsyLDEsIlxcYmV0YSJdLFsxLDNdLFszLDRdXQ==
+\[\begin{tikzcd}
+	\cdots & M & N & 0 & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow["g", from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+    é exato em #{N} se, e somente se, #{g} é um epimorfismo, uma vez que o núcleo do morfismo #{N \to 0} é #{N}.
+\end{Obs}
+
+\begin{Def}{Sequência exata curta}{}
+    Uma sequência exata é chamada de \textbf{sequência exata curta} se ela possui a forma 
+    % https://q.uiver.app/#q=WzAsNSxbMCwwLCIwIl0sWzEsMCwiTCJdLFsyLDAsIk0iXSxbMywwLCJOIl0sWzQsMCwiMCJdLFswLDFdLFsxLDIsImYiXSxbMiwzLCJnIl0sWzMsNF1d
+\[\begin{tikzcd}
+	0 & L & M & N & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["g", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+\end{Def}
+Como foi visto nas proposições anteriores, exatidão em #{L} e #{N} é equivalente a exigir a injetividade de #{f} e a sobrejetividade de #{g}, respectivamente. Como ela também é exata em #{M}, temos que #{\im f = \ker g}.
+
+Munidos disso, ao usarmos o primeiro teorema do isomorfismo (\cref{clrio:1-iso}), a injetividade de #{f} e a sobrejetividade de #{g}, obtemos que ##{L \cong  L / \ker f \cong \im f} e também ##{N = \im g \cong M / \ker g = M / \im f \cong M / L.}
+Portanto, à menos de isomorfismo, #{L} é submódulo de #{M}, #{N} é o quociente #{M / L}, #{f} é a inclusão de #{\im f} em #{A} e #{g} é a projeção de #{M} em #{M / L}. 
+
+\begin{Def}{Sequência exata cindida}{}
+    Dada uma sequência exata curta
+    % https://q.uiver.app/#q=WzAsNSxbMCwwLCIwIl0sWzEsMCwiTCJdLFsyLDAsIk0iXSxbMywwLCJOIl0sWzQsMCwiMCJdLFswLDFdLFsxLDIsImYiXSxbMiwzLCJnIl0sWzMsNF1d
+    \[\begin{tikzcd}
+    	0 & L & M & N & 0
+    	\arrow[from=1-1, to=1-2]
+    	\arrow["f", from=1-2, to=1-3]
+    	\arrow["g", from=1-3, to=1-4]
+    	\arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    Dizemos que ela \textbf{cinde} (ou é uma \textbf{sequência exata cindida}) se existe um homomorfismo #{u \from N \to M} tal que #{g \circ u = \id_C}.
+\end{Def}
+
+\begin{Prop}{}{}
+    Seja #{0 \to L \to M \to N \to 0} uma sequência exata curta. Se #{N} é livre, então a sequência cinde.
+\end{Prop}
+\begin{proof}
+    Seja #{\{e_i\}_{i \in I}} uma base para #{N}, e defina um homomorfismo #{u \from C \to B} por #{u(e_i) = b_i}, para #{b_i} arbitrário tal que #{b_i \in g^{-1}(\{e_i\})} e estendendo por linearidade. Então #{(g \circ u)(e_i) = e_i}, e #{g \circ u = \id_C}.
+\end{proof}
+
+\begin{Trma}{Lema da Cisão}{}
+    Dada uma sequência exata curta
+    % https://q.uiver.app/#q=WzAsNSxbMCwwLCIwIl0sWzEsMCwiTCJdLFsyLDAsIk0iXSxbMywwLCJOIl0sWzQsMCwiMCJdLFswLDFdLFsxLDIsImYiXSxbMiwzLCJnIl0sWzMsNF1d
+    \[\begin{tikzcd}
+    	0 & L & M & N & 0
+    	\arrow[from=1-1, to=1-2]
+    	\arrow["f", from=1-2, to=1-3]
+    	\arrow["g", from=1-3, to=1-4]
+    	\arrow[from=1-4, to=1-5]
+    \end{tikzcd},\]
+    as seguintes afirmações são equivalentes:
+    \begin{enumerate}
+        \item Existe um homomorfismo #{t \from M \to L} tal que #{t \circ f = \id_L};
+        \item Existe um homomorfismo #{u \from N \to M} tal que #{g \circ u = \id_N};
+        \item Existe um isomorfismo #{h \from M \to L \oplus N} tal que o seguinte diagrama comuta:
+        % https://q.uiver.app/#q=WzAsNixbMCwxLCIwIl0sWzEsMSwiTCJdLFsyLDAsIk0iXSxbMiwyLCJMIFxcb3BsdXMgTiJdLFszLDEsIk4iXSxbNCwxLCIwIl0sWzAsMV0sWzEsMywiXFxpb3RhIiwyXSxbMyw0LCJcXHBpIiwyXSxbNCw1XSxbMSwyLCJmIl0sWzIsNCwiZyJdLFsyLDMsImgiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJhcnJvd2hlYWQifSwiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+        % https://q.uiver.app/#q=WzAsNixbMCwxLCIwIl0sWzEsMSwiTCJdLFsyLDAsIk0iXSxbMiwyLCJMIFxcb3BsdXMgTiJdLFszLDEsIk4iXSxbNCwxLCIwIl0sWzAsMV0sWzEsMywiXFxpb3RhX0wiLDJdLFszLDQsIlxccGlfTiIsMl0sWzQsNV0sWzEsMiwiZiJdLFsyLDQsImciXSxbMiwzLCJoIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiYXJyb3doZWFkIn0sImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+        \[\begin{tikzcd}
+        	&& M \\
+        	0 & L && N & 0 \\
+        	&& {L \oplus N}
+        	\arrow["g", from=1-3, to=2-4]
+        	\arrow["h", dashed, from=1-3, to=3-3]
+        	\arrow[from=2-1, to=2-2]
+        	\arrow["f", from=2-2, to=1-3]
+        	\arrow["{\iota_L}"', from=2-2, to=3-3]
+        	\arrow[from=2-4, to=2-5]
+        	\arrow["{\pi_N}"', from=3-3, to=2-4]
+        \end{tikzcd}\]
+    \end{enumerate}
+\end{Trma}
+
+\begin{proof}
+\begin{description}
+    \item[$3. \Rightarrow 1.$] Tome #{t = \pi_L \circ h}.
+    \item[$3. \Rightarrow 2.$] Tome #{u = h^{-1} \circ \iota_N}.
+    \item[$1. \Rightarrow 3.$] Primeiro, observe que #{\ker t + \im f \subset M}, por definição. Queremos mostrar que #{M \subset \ker t + \im f} também: Dado #{m \in M}, podemos escrever #{m = (m - f(t(m))) + f(t(m))}, onde #{f(t(m)) \in \im f} e #{(m - f(t(m))) \in \ker t}, uma vez que ##{t(m - f(t(m))) = t(m) - t(f(t(m))) = t(m) - t(m) = 0.}
+    Portanto #{B = \ker t + \im t}. Mostraremos agora que #{\ker t \cap \im f = \{0\}}: Dado #{d \in \ker t \cap \im f}, temos #{t(d) = 0} e #{d = f(l)}, para algum #{l \in L}. No entanto, #{l = t(f(l)) = t(d) = 0}, e como #{f} é homomorfismo, #{d = 0} também.
+
+    Dessa forma, #{M = \ker t \,\oplus\, \im f}. Agora, basta mostrar que #{\ker t \cong N} e #{\im f \cong L}. Como #{f} é injetora pela \cref{obs:exata-mono}, #{L = L / \ker f \cong \im f}. Para a outra igualdade, observe que como #{M = \ker t \, \oplus \, \im f}, dado #{m \in M}, #{m} é da forma #{m = f(l) + k}, para #{l \in L} e #{k \in \ker t}. Sendo #{g} sobrejetor, para todo #{n \in N}, existe um #{m \in M}  tal que #{n = g(m) = g(f(l) + k) = g(f(l)) + g(k) = g(k)}, e #{g[\ker t] = N}, e #{g|_{\ker t}} é sobrejetiva, e resta mostrar que é injetiva. Como #{\ker g = \im f}, #{t \in \ker t} é tal que #{g(t) = 0 \iff t \in \ker t \cap \im f}, que já mostramos que é #{\{0\}}. Portanto #{g|_{\ker t}} é um isomorfismo, e #{\ker t \cong N}.
+    \item[$2. \Rightarrow 3.$] Analogamente ao caso anterior, podemos mostrar que #{M = \ker g \oplus \im u}. Já sabemos que #{L \cong \im f = \ker g}, e #{\im u \cong N} já que #{\id_N = g \circ u} é uma bijeção, o que implica a injetividade de #{u}, e portanto #{N \cong N / \ker u \cong \im u}. Assim, #{M \cong L \oplus N}.
+    
+\end{description}
+\end{proof}
+
+O lema acima nos dá condições para afirmar que uma sequência exata #{0 \to L \to M \to N \to 0} cinde quando ela é ``isomorfa'' à sequência #{0 \to L \to L \oplus N \to N \to 0}. Podemos denotar uma sequência exata cindida por meio do diagrama 
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCIwIl0sWzEsMCwiTCJdLFsyLDAsIk0iXSxbMywwLCJOIl0sWzQsMCwiMCJdLFswLDFdLFsxLDIsImYiLDAseyJvZmZzZXQiOi0zfV0sWzIsMywiZyIsMCx7Im9mZnNldCI6LTN9XSxbMyw0XSxbMiwxLCJ0IiwwLHsib2Zmc2V0IjotM31dLFszLDIsInUiLDAseyJvZmZzZXQiOi0zfV1d
+\[\begin{tikzcd}
+	0 & L & M & N & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow["f", shift left=3, from=1-2, to=1-3]
+	\arrow["t", shift left=3, from=1-3, to=1-2]
+	\arrow["g", shift left=3, from=1-3, to=1-4]
+	\arrow["u", shift left=3, from=1-4, to=1-3]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}.\]
+
+Chamaremos então #{u} (resp. #{t}) de \textbf{homomorfismo de cisão} para #{g} (resp. #{f}).
+
+\subsection{Funtores exatos}
+
+Nessa seção, retornaremos à definição de funtores Hom (\cref{exemplo:funtores-hom}) e definiremos funtores #{A \otimes -}, e mostraremos que ambos satisfazem certas propriedades especiais.
+
+\begin{Def}{Funtores exatos}{funtores-exatos}
+    Sejam #{R, S \in \catname{CRing}}. Um funtor (aditivo) #{F \from {}_{R}\catname{Mod} \to {}_{S}\catname{Mod}} é dito um:
+
+    \begin{itemize}
+        \item \textbf{funtor exato} se, para qualquer sequência exata curta #{0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0} em #{\Rmod}, a sequência #{0 \to FA \xrightarrow{Ff}FB \xrightarrow{Fg} FC \to 0} é exata em #{\Smod}.
+        \item \textbf{funtor exato à esquerda} se, para qualquer sequência exata curta #{0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0} em #{\Rmod}, a sequência #{0 \to FA \xrightarrow{Ff}FB \xrightarrow{Fg} FC} é exata em #{\Smod}.
+        \item \textbf{funtor exato à direita} se, para qualquer sequência exata curta #{0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0} em #{\Rmod}, a sequência #{FA \xrightarrow{Ff}FB \xrightarrow{Fg} FC \to 0} é exata em #{\Smod}.
+    \end{itemize}
+
+    Ao trocar as direções apropriadamente, obtemos definições análogos para funtores contravariantes.
+\end{Def}
+
+\begin{Prop}{Funtores Hom são exatos à esquerda}{hom-exato}
+    Sejam #{R \in \catname{CRing}} e #{M \in \Rmod} Então os funtores #{\Hom_R(M, -)} e #{\Hom_R(-, M)} são exatos à esquerda.
+\end{Prop}
+\begin{proof}
+    Seja ##{0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0} uma sequência exata curta em #{\Rmod}. Queremos então mostrar que ##{0 \to \Hom_R(M, A) \xrightarrow{f_*} \Hom_R(M, B) \xrightarrow{g_*} \Hom_R(M, C)} é exata. Para tal, basta mostrar que #{\ker f_* = \{0\}} e #{\im f_* = \ker g_*}.
+
+    A primeira condição é evidente: Para #{\alpha \from M \to A}, Se #{f_* \alpha = f \circ \alpha = 0}, então #{\alpha = 0}, pois #{f} é injetor.
+
+    Agora, se existe #{\beta \from M \to B} tal que existe um #{\alpha \from M \to A} de modo que #{\beta = f \circ \alpha}, então #{g_* \beta = g_* f_* \alpha = (gf)_* \alpha = 0}, e portanto #{\im f_* \subset \ker g_*}. Isso pode ser visualizado no seguinte diagrama comutativo: 
+    % https://q.uiver.app/#q=WzAsNCxbMSwwLCJNIl0sWzAsMSwiQSJdLFsxLDEsIkIiXSxbMiwxLCJDIl0sWzAsMiwiXFxiZXRhIl0sWzAsMSwiXFxhbHBoYSIsMl0sWzAsMywiMCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDMsImciLDJdLFsxLDIsImYiLDJdXQ==
+    \[\begin{tikzcd}
+    	& M \\
+    	A & B & C
+    	\arrow["\alpha"', from=1-2, to=2-1]
+    	\arrow["\beta", from=1-2, to=2-2]
+    	\arrow["0", dashed, from=1-2, to=2-3]
+    	\arrow["f"', from=2-1, to=2-2]
+    	\arrow["g"', from=2-2, to=2-3]
+    \end{tikzcd}\]
+
+    Simultaneamente, se #{\beta \from M \to B} é tal que #{g_* \beta = 0}, então, para cada #{y \in M}, vale que #{\beta(y) \in \ker g = \im f}. Ergo, existe #{\alpha \from M \to A} único tal que #{\alpha(y) \in f^{-1}[\beta(y)]}, que é um conjunto unitário, pois #{f} é injetor. Note que #{\alpha} é homomorfismo pois é formada por composição de homomorfismos. Dessa forma, #{\beta = f_* \alpha}, e portanto #{\ker g_* \subset \im f_*}.
+    Essas relações podem ser visualizadas pelo seguinte diagrama comutativo: % https://q.uiver.app/#q=WzAsNCxbMSwwLCJNIl0sWzAsMSwiQSJdLFsxLDEsIkIiXSxbMiwxLCJDIl0sWzAsMiwiXFxiZXRhIl0sWzAsMSwiXFxleGlzdHMhIFxcLFxcYWxwaGEiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwzLCIwIl0sWzIsMywiZyIsMl0sWzEsMiwiZiIsMl1d
+% https://q.uiver.app/#q=WzAsNCxbMSwwLCJNIl0sWzAsMSwiQSJdLFsxLDEsIkIiXSxbMiwxLCJDIl0sWzAsMiwiXFxiZXRhIl0sWzAsMSwiXFxhbHBoYSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDMsIjAiXSxbMiwzLCJnIiwyXSxbMSwyLCJmIiwyXV0=
+\[\begin{tikzcd}
+	& M \\
+	A & B & C
+	\arrow["\alpha"', dashed, from=1-2, to=2-1]
+	\arrow["\beta", from=1-2, to=2-2]
+	\arrow["0", from=1-2, to=2-3]
+	\arrow["f"', from=2-1, to=2-2]
+	\arrow["g"', from=2-2, to=2-3]
+\end{tikzcd}\]
+
+    A demonstração para #{\Hom_R(-, M)} é análoga.
+\end{proof}
+
+\begin{Clrio}{Funtores Hom são exatos em módulos livres}{}
+    Sejam #{R \in \catname{CRing}} e #{M \in \Rmod} um módulo livre. Então os funtores #{\Hom_R(M, -)} e #{\Hom_R(-, M)} são exatos.
+\end{Clrio}
+
+\begin{proof}
+    Pela \cref{prop:hom-exato}, #{\Hom_R(M, -)} é exato à esquerda. Resta mostrar então #{g_*} é sobrejetor, para #{g \from B \to C} sobrejetor como na proposição anterior. Isso reduz-se a, para todo #{\alpha \from M \to C}, escolhermos #{\beta \from M \to B} tal que #{g_*\beta = \alpha}. Fixe agora #{\mathcal{B}} uma base de #{M}, e para cada #{b \in \mathcal{B}}, tomar #{\beta(b) \in g^{-1}(\alpha(b))}. Como #{g} é sobrejetor, #{g^{-1}(\alpha(b)) \neq \emptyset}, para todo #{b}, e então podemos estender #{\beta} linearmente para que esteja definida em todo #{M}. A demonstração é análoga para #{\Hom(-, M)}.
+\end{proof}
+
+\begin{Prop}{Funtores Hom preservam sequências exatas cindidas}{}
+    Sejam #{R \in \catname{CRing}} e #{M \in \Rmod}. Suponha que ##{0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0} é uma sequência exata cindida. Então ##{0 \to \Hom_R(M, A) \xrightarrow{f_*} \Hom_R(M, B) \xrightarrow{g_*} \Hom_R(M, C) \to 0} é uma sequência exata cindida.
+\end{Prop}
+
+\begin{proof}
+    Ao usar a \cref{prop:hom-exato}, para demonstrar a exatidão da sequência após aplicar #{\Hom_R(M, -)}, resta-nos mostrar que #{g_*} é sobrejetor. Tome então #{\alpha \from M \to C}, e como a sequência original cinde, sabemos que existe um #{u \from C \to B} tal que #{g \circ u = \id_C}. Com efeito, #{u_* \alpha \from M \to B} é tal que #{g_* u_* \alpha = (g \circ u)(\alpha) = \alpha}. A sequência resultante também cinde pois, como argumentado, #{g_*u_* = \id_{\Hom_R(M, C)}}.
+\end{proof}
+
+Introduziremos agora dois novos funtores:
+
+\begin{Def}{Funtores produto tensorial}{funtores-produto-tensorial}
+    Dados #{R \in \catname{CRing}} e #{M \in \Rmod}, o produto tensorial como definido em \cref{def:produto-tensorial} dá origem à dois funtores #{\Rmod \to \Rmod}:
+
+    \begin{itemize}
+        \item #{- \otimes M}, um funtor definido em objetos por #{N \mapsto N \otimes M} e em morfismos #{f \from N \to L} por #{f \otimes 1}, onde \begin{align*}
+            f \otimes 1 \from N \otimes M &\to L \otimes M \\
+            \sum_i (n_i \otimes m_i) &\mapsto \sum_i (f(n_i) \otimes m_i);
+        \end{align*}
+        \item #{M \otimes -}, um funtor definido em objetos por #{N \mapsto M \otimes N} e em morfismos #{g \from N \to L} por #{1 \otimes g}, onde \begin{align*}
+            1 \otimes g \from M \otimes N &\to M \otimes L \\
+             \sum_i (m_i \otimes n_i) &\mapsto \sum_i (m_i \otimes g(n_i)).
+        \end{align*}
+    \end{itemize}
+\end{Def}
+
+De fato, esses funtores satisfazem as propriedades de funtores exatos à direita:
+
+\begin{Prop}{Funtores produto tensorial são exatos à direita}{tensorial-exato}
+    Sejam #{R \in \catname{CRing}} e #{M \in \Rmod}. Então #{M \otimes_R -} e #{- \otimes_R M} são exatos à direita.
+\end{Prop}
+
+\begin{proof}
+    Dada uma sequência exata #{0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0}, queremos mostrar que ##{M \otimes A \xrightarrow{1 \otimes f} M \otimes B \xrightarrow{1 \otimes g} M \otimes C \to 0} é uma sequência exata.
+
+    Pela \cref{prop:tensorial-props}, obtemos um isomorfismo natural entre #{M \otimes_R -} e #{- \otimes_R M}, e portanto, #{- \otimes_R M} também é exato à direita.
+    % https://math.stackexchange.com/questions/4208986/if-a-functor-is-isomorphic-to-an-exact-functor-is-it-exact
+\end{proof}
+
+\section{Homologia em Complexos de Cadeias}
+
+\chapter{Homologia Simplicial}
+
+\section{Simplexos}
+
+A ideia principal de um #{n}-simplexo é ser uma simplificação de #{n}-variedades com bordo, mas ainda sim por sua vez são uma generalização de um triângulo, e a introduzimos a fim de simplificar o cálculo de seus grupos de homologia.
+
+Um conjunto #{A \subset \R^n} é dito convexo se, dados #{x, y \in A}, temos #{tx + (1-t)y \in A}. O fecho convexo de #{A \subset \R^n} (não necessariamente convexo, dessa vez) é a interseção de todos os conjuntos convexos contendo #{A}.
+
+\begin{Def}{n-simplexo}{simplexo}
+    Um #{n}-simplexo é o fecho convexo de #{n + 1} pontos #{v_0, \cdots, v_n}, tal que #{\{v_1 - v_0, v_2 - v_0, \cdots, v_n - v_0\}} é um conjunto linearmente independente de #{\R^{n+1}}. Um simplexo #{\sigma} será denotado por seus vértices constituintes, de modo que #{\sigma = [v_0, \cdots, v_n]}.
+\end{Def}
+
+Alguns exemplos de simplexos são pontos, segmentos de reta, triângulos e tetraedros (com interior).
+
+\begin{Prop}{Representação de um n-simplexo}{}
+    Para #{\sigma} um #{n}-simplexo, temos ##{\sigma = [v_0, \cdots, v_n] = \left\{\sum_{i=0}^n t_i v_i : t_i \geq 0 \text{ e } \sum_{i=0}^n t_i = 1\right\}}
+    ademais, para #{s \in \sigma}, existe uma única (n+1)-upla #{(t_0, \cdots, t_n)}, com #{t_i \geq 0} e #{\sum_{i=0}^n t_i = 1} tal que #{s = \sum_{i=0}^n t_i v_i}.
+
+    Convencionamos de chamar #{(t_0, \cdots, t_n) \in \R^{n+1}} as coordenadas baricêntricas de #{s}.
+\end{Prop}
+
+\begin{proof}
+    Demonstraremos por indução em #{n}. Claramente a proposição vale para #{n = 0}. Suponha então que ela valha para #{n-1}. Dessa forma, dado #{\sigma = [v_0, \cdots, v_n]}, temos que #{[v_0, \cdots, v_{n-1}]} é um #{(n-1)}-simplexo onde a proposição vale. 
+    
+    Seja então #{A \in \R^{n+1}} convexo tal que #{\{v_0, \cdots, v_n\} \subset A}. Pela hipótese de indução, sabemos que #{\left\{\sum_{i=0}^{n-1} t_i v_i : t_i \geq 0 \text{ e } \sum_{i=0}^{n-1} t_i = 1\right\} = [v_0, \cdots, v_{n-1}] \subset A}. Portanto, dado #{s \in [v_0, \cdots, v_{n-1}]}, temos que, para todo #{\lambda \in [0, 1]}, #{\lambda s + (1 - \lambda)v_n \in A}, donde ##{\lambda\left(\sum_{i=0}^{n-1} t_iv_i\right) + (1 - t)v_n = \lambda t_0v_0 + \lambda t_1v_1 + \cdots + (1-\lambda)v_n \in A}
+    Com soma dos coeficientes #{\lambda\left(\sum_{i=0}^{n-1} t_i v_i\right) + (1 - \lambda) = \lambda + 1 - \lambda = 1}, de modo que #{\sum_{i=0}^n t_i v_i \subset A}, para todo #{A} convexo, e portanto #{\sigma = \left\{\sum_{i=0}^n t_i v_i : t_i \geq 0 \text{ e } \sum_{i=0}^n t_i = 1\right\}}, pois #{\sigma} é o fecho convexo do conjunto #{\{v_0, \cdots, v_n\}}.
+
+    A unicidade das coordenadas barocêntricas vem do fato que, se #{\sum_{i=0}^n s_i v_i = \sum_{i=0}^n t_iv_i}, então ##{0 = \sum_{i=0}^n(s_i-t_i)v_i = \sum_{i=0}^n(s_i-t_i)v_i - \left(\sum_{i=0}^n(s_i-t_i)\right)v_0 = \sum_{i=1}^n (s_i-t_i)(v_i-v_0)}
+
+    Como #{\{v_i - v_0 : i \in \{1, \cdots, n\}\}} é linearmente independente, obtemos que #{s_i = t_i}, para #{i \in \{1, \cdots, n\}}. Como #{\sum_{i=0}^n t_i = \sum_{i=0}^n s_i = 1}, #{s_0 = t_0}.
+\end{proof}
+
+Para #{\sigma = [v_0, \cdots, v_n]} um #{n}-simplexo, temos as seguintes definições:
+
+\begin{enumerate}
+    \item #{v_0, \cdots, v_n} são os vértices de #{\sigma}, e #{n} é a dimensão de #{\sigma};
+    \item Se todas as coordenadas baricêntricas de um ponto #{s \in \sigma} são positivas, chamamos #{s} de ponto interior;
+    \item O conjunto de todos os pontos interiores de #{\sigma} será denotado por #{\Int(\sigma)};
+    \item Se #{s \in \sigma} não é ponto interior, ele é dito ponto de bordo, e o conjunto de todos os pontos de bordo de #{\sigma} será chamado de #{\partial \sigma}.
+\end{enumerate}
+
+\begin{Def}{n-simplexo canônico}{}
+    O #{n}-simplexo canônico #{\Delta^n} é o simplexo gerado pela base canônica do #{\R^{n+1}}. Ou seja, #{{\Delta^n = [e_1, \cdots, e_{n+1}]}}.
+\end{Def}
+
+\begin{Def}{Face de um simplexo}{}
+    Sejam #{\sigma = [v_0, \cdots, v_n]} e #{\{v_{i_0}, \cdots, v_{i_k}\} \subset \{v_0, \cdots, v_n\}}, então para #{k \leq n}, o subsimplexo #{[v_{i_0}, \cdots, v_{i_k}]} é dito uma face (ou uma k-face) de #{\sigma}. Chamaremos as #{(n-1)}-faces de #{\sigma} de faces de bordo.
+\end{Def}
+
+\begin{Def}{n-simplexo orientado}{}
+    A partir de agora, dado #{\sigma = [v_0, \cdots, v_n]} um #{n}-simplexo, a ordem de seus vértices #{(v_0, \cdots, v_n)} induzirá uma orientação em #{\sigma}, e duas orientações são ditas equivalentes se diferem por uma permutação par. Dessa forma, temos duas classes de equivalência de orientações, e o simplexo #{\sigma} com a orientação oposta é denotado por #{-\sigma}.
+\end{Def}
+
+A orientação de um simplexo também induz uma orientação em cada uma de suas faces de bordo, dada por #{(-1)^i[v_0, \cdots, \widehat{v_i}, \cdots, v_n]}
+
+Ademais, a partir de um n-simplexo ordenado #{\sigma}, também podemos obter um homeomorfismo entre #{\sigma} e #{\Delta^n} preservando a ordem de seus vértices, dado  #{(t_0, \cdots, t_n)} coordenadas baricêntricas de #{s \in \Delta^n}, obtemos \begin{align*}f\from \Delta^n &\to \sigma \\ (t_0, \cdots, t_n) &\mapsto \sum_{i=0}^n t_iv_i\end{align*}
+
+\subsection*{$\Delta$-complexos}
+\begin{Def}{$\Delta$-complexo}{}
+    Uma estrutura de #{\Delta}-complexo em um espaço topológico #{X} é uma família #{\{\sigma_\alpha \from \Delta^n \to X\}}, tal que
+    \begin{enumerate}
+        \item #{\sigma_\alpha |_{\Int({\Delta^n})}} é injetora;
+        \item para cada #{x \in X} existe um único #{\alpha} tal que #{x \in \im(\sigma_\alpha|_{\Int(\Delta^n)})};
+        \item a restrição de #{\sigma_\alpha} a uma (n-1)-face de #{\Delta^n} é uma aplicação #{\sigma_\beta \from \Delta^{n-1} \to X} quando identificamos cada (n-1)-face de #{\Delta^n} com #{\Delta^{n-1}} pelo homeomorfismo linear que preserva orientação dos vértices;
+        \item um conjunto #{A \subset X} é aberto #{\iff} #{\sigma_\alpha^{-1}(A)} é aberto em #{\Delta^n} para todo #{\sigma_\alpha}.
+    \end{enumerate}
+\end{Def}
+
+Observe que a restrição 3 exige que, para #{\Delta_\alpha^n} e #{\Delta_\beta^n} #{n}-simplexos, se a imagem de #{\sigma_\alpha} e #{\sigma_\beta} possuem interseção não trivial, sua interseção necessariamente é uma união de #{k}-faces, para algum #{k \leq n}, e partilhar da mesma orientação, já que, do contrário, a segunda condição falharia, uma vez que para #{\sigma_{\alpha_k}} e #{\sigma_{\beta_k}} as restrições de #{\sigma_\alpha} e #{\sigma_\beta} a uma dessas #{k}-faces como na terceira condição, existiria algum #{x \in \im\left(\sigma_{\alpha_k}|_{\Int(\Delta^k)}\right) \cap \im\left(\sigma_{\beta_k}|_{\Int(\Delta^k)}\right)}.
+
+A última condição de #{\Delta}-complexo nos dá a topologia da estrutura, de forma natural.
+
+Chamamos uma aplicação #{\sigma_\alpha : \Delta^n \to X} de um #{n}-simplexo do #{\Delta}-complexo #{X}.
+
+\begin{Def}{k-esqueleto}{}
+    Para #{k \in \N}, um #{k}-esqueleto de um #{\Delta}-complexo #{X} é a imagem de todos os simplexos de dimensão menor ou igual a #{k}, e será denotado por #{X^k}.
+\end{Def}
+
+Observe que #{X^0 \subset X^1 \subset \cdots \subset X}.
+
+Um #{\Delta}-complexo é dito:
+\begin{enumerate}
+    \item \textbf{$k$-dimensional} se existe #{k \in \N} tal que #{X^k = X} e #{X^{k-1} \neq X} (o #{k}-esqueleto é o último que adiciona informações novas), e #{X} é dito de dimensão infinita se não existir tal #{k};
+    \item de \textbf{tipo finito} se, para cada #{k \geq 0}, #{X} possui apenas um número finito de #{k}-simplexos;
+    \item \textbf{finito} se possuir apenas um número finito de simplexos no total.
+\end{enumerate}
+
+A esfera bidimensional é um #{\Delta}-complexo finito e 2-dimensional, uma vez que podemos identificar as calotas superior e inferior como 2-simplexos, colados ao longo do equador e distorcidos por meio do homeomorfismo #{\textstyle x \mapsto \frac{x}{\norm{x}}}.
+
+\section{Homologia Simplicial}
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}
