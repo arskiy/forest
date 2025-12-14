@@ -1,6 +1,5 @@
 [forest]
 trees = ["trees" ]  # The directories in which your trees are stored
 assets = ["assets"] # The directories in which your assets are stored
-theme = "my-theme"
 url = "https://arskiy.github.io/" # Replace this with your own domain or web storage. If you don't have one, you can use "http://localhost/"; the URL given here does not matter unless you plan to publish your forest.
 home = "index"
