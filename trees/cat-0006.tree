@@ -1,0 +1,11 @@
+\title{Objetos iniciais e finais}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Definição}
+
+\p{Seja \catname{C} uma [categoria](cat-0001). Um objeto #{I \in \catname{C}} é dito \textbf{inicial} se, para todo objeto #{A \in \catname{C}}, existe exatamente um morfismo #{I \to A}. Isto é, #{\Hom_\catname{C}(I, A)} é unitário.}
+
+\p{Um objeto #{F \in \catname{C}} é dito \textbf{final} se, para todo objeto #{A \in C}, existe exatamente um morfismo #{A \to F}, isto é, #{\Hom_\catname{C}(A, F)} é unitário.}
+
+\p{Um objeto que é inicial e final em uma [categoria](cat-0001) é chamado de \textbf{objeto zero}.}

@@ -1,0 +1,9 @@
+\title{Isomorfismo}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Definição}
+
+\p{Um \textbf{isomorfismo} em uma [categoria](cat-0001) é um morfismo #{f \from A \to B} para qual existe um outro morfismo #{g \from B \to A} onde #{fg = 1_B} e #{gf = 1_A}. Assim, chamaremos #{g} de inversa de #{f} (e vice-versa) e denotaremos #{g = f^{-1}}.}
+
+\p{Se existir um isomorfismo de #{A} para #{B}, dizemos que #{A} e #{B} são \textbf{isomorfos} e denotaremos #{A \cong B}.}

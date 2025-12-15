@@ -1,0 +1,15 @@
+\title{Funtores fiéis e plenos}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Definição}
+
+\p{
+  Sejam #{\catname{C}} e #{\catname{D}} categorias e seja #{F \from \catname{C} \to \catname{D}} um [funtor](cat-000a). Para cada par #{A, B \in \catname{C}}, o funtor #{F} induz uma função ##{F_{A, B} \from \Hom_\catname{C}(A, B) \to \Hom_\catname{D}(F(A), F(B)).} O funtor #{F} é dito
+    \ol{
+        \li{\textbf{fiel} se #{F_{A, B}} é injetora;}
+        \li{\textbf{pleno} se #{F_{A, B}} é sobrejetora;}
+        \li{\textbf{plenamente fiel} se #{F_{A, B}} é bijetora.}
+    }
+    para todo #{A, B} em #{\catname{C}}.
+}

@@ -1,0 +1,18 @@
+\title{Funtor}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Definição}
+
+\p{Sejam \catname{C} e \catname{D} duas [categorias](cat-0001). Um \textbf{funtor covariante} (ou apenas \textbf{funtor}) #{F \from \catname{C} \to \catname{D}} consiste em:
+    \ul{
+        \li{Uma função #{\Obj(\catname{C}) \to \Obj(\catname{D})}, escrita como #{A \mapsto F(A)}, para cada objeto #{A \in \catname{C}};}
+        \li{Para cada #{A, B \in \catname{C}}, existe uma função ##{\Hom_\catname{C}(A, B) \to \Hom_\catname{D}(F(A), F(B)),} tal que:}
+        \ul{
+          \li{Para todo #{f\from A \to B} e #{f' \from B \to C}, vale que ##{F(f' \circ f) = F(f') \circ F(f);}}
+          \li{#{F(1_A) = 1_{F(A)}}, para todo #{A \in \catname{C}}}
+        }
+    }
+
+    Dualmente, podemos obter \textbf{funtores contravariantes} #{\catname{C} \to \catname{D}}, que é um funtor covariante #{\catname{C}^\mathrm{op} \to \catname{D}}. Como ##{\Hom_{\catname{C}^\mathrm{op}}(A, B) = \Hom_\catname{C}(B, A),}
+    segue que um funtor contravariante #{F \from \catname{C} \to \catname{D}} transforma o conjunto de morfismos #{\Hom_\catname{C}(A, B) \to \Hom_\catname{D}(F(B), F(A))}, e a composição de morfismos se torna ##{F(f' \circ f) = F(f) \circ F(f).}}

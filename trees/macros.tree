@@ -3,6 +3,8 @@
 % These play much nicer with sh in VSCode & my muscle memory
 \def\emph[x]{\em{\x}}
 \def\textbf[x]{\strong{\x}}
+\def\textit[x]{\em{\x}}
+
 
 % Blackboard bold, bold, and calligraphic characters
 
@@ -157,6 +159,10 @@
 \def\dom{#{\operatorname{\mathrm{dom}}}}
 \def\codom{#{\operatorname{\mathrm{codom}}}}
 \def\yoneda{#{\operatorname{\mathbf{y}}}}
+\def\obj{#{\operatorname{Obj}}}
+\def\Obj{#{\operatorname{Obj}}}
+\def\Q{#{\mathbb{Q}}}
+\def\End{#{\operatorname{End}}}
 
 \def\id{#{\mathrm{id}}}
 \def\then{#{\mathbin{⨟}}}
@@ -177,9 +183,12 @@
 \def\proto{#{\nrightarrow}}
 \def\twoto{#{\Rightarrow}}
 
-\def\cat[c]{#{\mathsf{\c}}}
+\def\cat[c]{#{\mathbf{\mathsf{\c}}}}
+\def\catname[c]{#{\mathbf{\mathsf{\c}}}}
 \def\twocat[c]{#{\mathcal{\c}}}
 \def\dblcat[name]{#{\cat{\mathbb \name}}}
+
+\def\Rmod{#{_{R}\catname{Mod}}}
 
 \def\Cat{#{\cat{Cat}}} %should perhaps be a 2-category by default...or double?
 \def\CAT{#{\cat{CAT}}}
@@ -341,10 +350,6 @@
 
 % Figures
 
-\def\quiver[body]{
-  \<html:center>{\tex{\usepackage{quiver, amsopn, amssymb, mathrsfs}}{\body}}
-}
-
 \def\image[source]{
   \<html:center>{\<html:img>[src]{\source}{}}
 }
@@ -402,6 +407,18 @@
       \stopverb
     }{
       \begin{tikzcd}\body{}\end{tikzcd}
+    }
+  }
+}
+
+\def\quiver[~body]{
+  \<html:span>[class]{tikz tikzcd}{
+    \tex{
+      \startverb
+      \usepackage{mlmodern, tikz, tikz-cd, quiver, mathtools, amssymb, stmaryrd, mathrsfs}
+      \stopverb
+    }{
+      \body{}
     }
   }
 }

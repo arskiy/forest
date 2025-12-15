@@ -98,7 +98,7 @@
             </xsl:if>
           </xsl:for-each>
           <xsl:if test="f:contributor">
-            <xsl:text>&#x20;with contributions from&#x20;</xsl:text>
+            <xsl:text>&#x20;com contribuições de&#x20;</xsl:text>
             <xsl:for-each select="f:contributor">
               <xsl:apply-templates />
               <xsl:if test="position()!=last()">

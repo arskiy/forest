@@ -1,0 +1,69 @@
+\title{Propriedade universal do produto}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Teorema}
+
+\p{
+  Sejam \catname{C} uma [categoria](cat-0001), e #{A, B\in \catname{C}}. O \textbf{produto} de #{A} e #{B} é um objeto #{A \times B \in \catname{C}} juntamente com morfismos #{\pi_A \from A \times B \to A} e #{\pi_B \from A \times B \to B} tais que, para todo objeto #{Z \in \catname{C}} munido de morfismos #{f_A \from Z \to A} e #{f_B \from Z \to B}, existe um único morfismo #{\sigma \from Z \to A \times B} tal que o seguinte diagrama comuta:
+    % https://q.uiver.app/#q=WzAsNCxbMCwxLCJaIl0sWzEsMSwiQSBcXHRpbWVzIEIiXSxbMiwwLCJBIl0sWzIsMiwiQiJdLFsxLDIsIlxccGlfQSIsMl0sWzEsMywiXFxwaV9CIl0sWzAsMywiZl9CIiwyLHsiY3VydmUiOjJ9XSxbMCwyLCJmX0EiLDAseyJjdXJ2ZSI6LTJ9XSxbMCwxLCJcXHNpZ21hIl1d
+    \tikzcd{
+    	&& A \\
+    	Z & {A \times B} \\
+    	&& B
+    	\arrow["{f_A}", curve={height=-12pt}, from=2-1, to=1-3]
+    	\arrow["\sigma", from=2-1, to=2-2]
+    	\arrow["{f_B}"', curve={height=12pt}, from=2-1, to=3-3]
+    	\arrow["{\pi_A}"', from=2-2, to=1-3]
+    	\arrow["{\pi_B}", from=2-2, to=3-3]
+    }
+}
+
+\p{Pode-se demonstrar que o produto cartesiano em \catname{Set} satisfaz essa propriedade universal.}
+
+\p{
+  Vejamos que de fato essa construção é uma [propriedade universal](cat-0007):
+}
+
+\proof{
+\p{
+  Definamos a categoria #{\catname{C}_{A, B}}, com objetos sendo diagramas em \catname{C} da forma % https://q.uiver.app/#q=WzAsMyxbMCwxLCJaIl0sWzEsMCwiQSJdLFsxLDIsIkIiXSxbMCwxLCJmIl0sWzAsMiwiZyIsMl1d
+\tikzcd{
+	& A \\
+	Z \\
+	& B
+	\arrow["f", from=2-1, to=1-2]
+	\arrow["g"', from=2-1, to=3-2]
+}
+
+e morfismos #{\sigma} sendo diagramas da forma
+% https://q.uiver.app/#q=WzAsNixbMCwxLCJaXzEiXSxbMSwwLCJBIl0sWzEsMiwiQiJdLFszLDEsIlpfMiJdLFs0LDAsIkEiXSxbNCwyLCJCIl0sWzAsMSwiZl8xIl0sWzAsMiwiZ18xIiwyXSxbMyw0LCJmXzIiLDJdLFszLDUsImdfMiJdLFswLDMsIlxcc2lnbWEiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjB9fV1d
+\tikzcd{
+	& A &&& A \\
+	{Z_1} &&& {Z_2} \\
+	& B &&& B
+	\arrow["{f_1}", from=2-1, to=1-2]
+	\arrow["\sigma", from=2-1, to=2-4]
+	\arrow["{g_1}"', from=2-1, to=3-2]
+	\arrow["{f_2}"', from=2-4, to=1-5]
+	\arrow["{g_2}", from=2-4, to=3-5]
+}
+
+que devem ser de modo a fazer o seguinte diagrama comutar:
+
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJaXzEiXSxbMSwxLCJaXzIiXSxbMiwwLCJBIl0sWzIsMiwiQiJdLFswLDIsImZfMSIsMCx7ImN1cnZlIjotMn1dLFswLDMsImdfMSIsMix7ImN1cnZlIjoyfV0sWzAsMSwiXFxzaWdtYSJdLFsxLDIsImZfMiIsMl0sWzEsMywiZ18yIl1d
+\tikzcd{
+	&& A \\
+	{Z_1} & {Z_2} \\
+	&& B
+	\arrow["{f_1}", curve={height=-12pt}, from=2-1, to=1-3]
+	\arrow["\sigma", from=2-1, to=2-2]
+	\arrow["{g_1}"', curve={height=12pt}, from=2-1, to=3-3]
+	\arrow["{f_2}"', from=2-2, to=1-3]
+	\arrow["{g_2}", from=2-2, to=3-3]
+}
+}
+
+\p{Observe que #{A \times B} é um objeto final nessa categoria, e portanto, se uma categoria possui noção de produto, ele deve ser único, a menos de isomorfismo.}}
+
+\p{Vemos por meio desse exemplo que, apesar de uma construção depender somente de \catname{C}, a categoria onde a construção é objeto inicial ou final pode ter uma estrutura um tanto distante da categoria \catname{C}.}

@@ -1,0 +1,7 @@
+\title{Grupo abeliano livre}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Definição}
+
+\p{Um \strong{grupo abeliano livre} gerado por #{A} é a [abelianização](halg-0002) do [grupo livre](halg-0001) gerado por #{A}.}

@@ -1,0 +1,9 @@
+\title{#{R}-módulos formam uma categoria}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Observação}
+
+\p{
+  Como a composição de dois #{R}-homomorfismos é um #{R}-homomorfismo e a função identidade também é um #{R}-homomorfismo, os [#{R}-módulos à esquerda](halg-0004) formam uma categoria, chamada de #{\Rmod}. [Como todo grupo abeliano é um #{\Z}-módulo](halg-0008), #{{}_{\Z}\cat{Mod}} é naturalmente isomorfa a #{\catname{Ab}}.
+}

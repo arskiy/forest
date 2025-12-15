@@ -1,0 +1,9 @@
+\title{Kernels e imagens são submódulos}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Proposição}
+
+\p{
+  Dado um homomorfismo de #{R}-módulos #{f \from M \to N}, temos que #{\ker f} é um submódulo de #{M} e que #{\im f} é um submódulo de #{N}.
+}

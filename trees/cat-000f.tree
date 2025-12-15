@@ -1,0 +1,12 @@
+\title{Categorias pré-aditivas}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Definição}
+
+\p{
+  Uma [categoria](cat-0001) #{\catname{C}} é dita \textbf{pré-aditiva} se, para todo #{A, B \in \catname{C}}, vale que #{\Hom_\catname{C}(A, B)} é um grupo abeliano, de forma que a composição de morfismos distribui dos dois lados:
+    ##{f(g_1 + g_2) = fg_1 + fg_2 \hspace{30pt}(g_1 + g_2)f = g_1f + g_2f.}
+
+    Nota-se que a operação da qual #{\Hom_\catname{C}(A, B)} é munido não é especificada nessa definição.
+}

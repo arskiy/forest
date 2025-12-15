@@ -1,0 +1,28 @@
+\title{#{R}-módulos}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Definição}
+
+\p{Sejam #{R \in \cat{Ring}} e #{M} um grupo abeliano. Então #{M} é dito um \textbf{#{R}-módulo à esquerda} se existe uma operação ##{{\begin{array}{ccc}
+        \cdot \from &R \times M &\to &M \\
+        &(r, m) &\mapsto &rm
+    \end{array}}}
+
+    tal que, para todo #{m_1, m_2 \in M} e #{r_1, r_2 \in R}, vale:
+
+    \ol{
+        \li{#{r_1(m_1 + m_2) = r_1m_1 + r_1m_2};}
+        \li{#{(r_1 + r_2)m_1 = r_1 m_1 + r_2 m_1};}
+        \li{#{(r_1r_2)m_1 = r_1(r_2 m_1)};}
+        \li{#{1m_1 = m_1}.}
+    }
+}
+
+\p{
+  Se a terceira condição for substituída por #{(r_1 r_2)m_1 = r_2(r_1m_1)}, #{M} é dito um \textbf{#{R}-módulo à direita}, e se #{R} é comutativo (que será o caso onde trabalharemos), a distinção entre os dois conceitos é inexistente.}
+
+\p{
+  Uma segunda forma (equivalente) de definir #{R}-módulos é por meio de um análogo em anéis do conceito de ações de grupo. Para #{M} um grupo abeliano, seus endomorfismos formam um anel, cujas operações são soma pontual e composição. Então uma ação à esquerda de #{R} em #{M} é um homomorfismo de anéis ##{\sigma \from R \to \End_{\catname{Ab}}(M),}
+e a existência de um tal #{\sigma} torna #{M} um #{R}-módulo à esquerda, com #{r \cdot m = \sigma(r)(m)}. Para definir um #{R}-módulo à direita, basta tomar como domínio de #{\sigma} o anel #{R^o}, construído a partir do anel #{R} mas com multiplicação substituída por #{a \bullet b = ba}, e então, para #{\sigma \from R^o \to \End_{\catname{Ab}}(M)}, #{M} é um #{R^o} módulo à esquerda onde #{\sigma(r_2r_1) = \sigma(r_1 \bullet r_2) = \sigma(r_1) \circ \sigma(r_2)}, condizendo com a definição de #{R}-módulo à direita dada anteriormente.
+}

@@ -1,0 +1,9 @@
+\title{Submódulos}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Definição}
+
+\p{
+  Para #{M} um [#{R}-módulo à esquerda](halg-0004) e #{N} um subgrupo de #{(M, +)}, se para todo #{n \in N} e #{r \in R} vale que #{rn \in N}, #{N} é dito um \textbf{submódulo} de #{M}. Evidentemente, #{N} também é um #{R}-módulo à esquerda, e todo ideal de #{R} visto como #{R}-módulo é um submódulo, e vice-versa.
+}

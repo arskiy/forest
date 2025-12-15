@@ -1,0 +1,17 @@
+\title{Certos prefixos de "morfismo"}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Definição}
+
+\p{Um [morfismo](cat-0001) #{f \from A \to B} é chamado de \ul{
+        \li{\textbf{endomorfismo} se #{A = B};}
+        \li{\textbf{automorfismo} se #{A = B} e #{f} é um isomorfismo;}
+        \li{\textbf{monomorfismo} se #{fg_1 = fg_2} implica #{g_1 = g_2}, para qualquer objeto #{C} e #{g_1, g_2 \from C \to A};}
+        \li{\textbf{epimorfismo} se #{g_1f = g_2f} implica #{g_1 = g_2}, para qualquer objeto #{C} e #{g_1, g_2 \from B \to C}.}
+}}
+
+\p{Note que, em \catname{Set}, uma função é um monomorfismo se, e somente se, ela é injetiva, e é um epimorfismo se, e somente se, ela é sobrejetiva. No entanto, em geral, essas noções não são equivalentes: Em \catname{Ring}, a noção de homomorfismo sobrejetor é diferente da noção de epimorfismo, e portanto, um epimorfismo que também é monomorfismo não necessariamente é um isomorfismo.}
+
+\p{Seja #{\iota \from \Z \hookrightarrow \Q} a inclusão (homomorfa) de #{\Z} em #{\Q}, que evidentemente não é sobrejetora. Sejam agora também #{g_1, g_2 \from \Q \to R} homomorfismos tais que #{g_1|_\Z = g_2|_\Z} (isto é, ambas concordam em #{\Z}) (Isso não é por acaso: Como #{\Z} é objeto inicial em \catname{Ring}, existe um único homomorfismo #{\alpha \from \Z \to R}.). Então #{g_1 = g_2}, pois ##{g_1\left(\frac{p}{q}\right) = g_1(p)g_1(q)^{-1} = g_2(p)g_2(q)^{-1} = g_2\left(\frac{p}{q}\right).} 
+}

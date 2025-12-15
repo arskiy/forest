@@ -1,0 +1,9 @@
+\title{Todo grupo abeliano é um #{\Z}-módulo}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Observação}
+
+\p{
+  Como #{\Z} é inicial em #{\catname{Ring}}, existe um único homomorfismo de grupos de #{\Z} em #{\End_{\catname{Ab}} (G)}, para todo grupo abeliano #{G}. Pela segunda definição de [#{R}-módulo](halg-0004), #{G} é um #{\Z}-módulo, definido de maneira canônica.
+}

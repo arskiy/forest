@@ -1,0 +1,22 @@
+\title{Propriedade universal}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Teorema}
+
+\transclude{cat-0006}
+
+\p{Seja \catname{C} uma [categoria](cat-0001). Então, \ul{
+        \li{Se #{I_1} e #{I_2} são objetos iniciais em \catname{C}, então #{I_1 \cong I_2};}
+        \li{Se #{F_1} e #{F_2} são objetos finais em \catname{C}, então #{F_1 \cong F_2}.}
+}}
+
+\p{
+  Dizemos que uma construção satisfaz uma \textbf{propriedade universal} quando ela é o objeto inicial ou final de alguma categoria. Demonstrar que uma construção satisfaz uma propriedade universal demonstra a unicidade daquela propriedade, a menos de isomorfismo, mas a existência ainda precisa ser demonstrada separadamente, geralmente por meio de uma construção, pois nem toda categoria possui objetos iniciais ou finais.
+}
+
+\proof{
+  \p{Como #{I_1} e #{I_2} são objetos iniciais em \catname{C}, existe um único morfismo #{f \from I_1 \to I_2}, e um único morfismo #{g \from I_2 \to I_1}. Então, como #{gf \from I_1 \to I_1} e existe um único morfismo #{1_{I_1} \from I_1 \to I_1}, esse necessariamente deve ser o morfismo identidade de #{I_1}, pois do contrário \catname{C} não seria uma categoria. Portanto, por falta de opções, ##{gf = 1_{I_1}.} Pelo mesmo argumento, temos ##{fg = 1_{I_2}.} Portanto #{f} é um isomorfismo.}
+
+  \p{O argumento para #{F_1} e #{F_2} é análogo.}
+}

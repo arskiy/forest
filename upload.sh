@@ -1,3 +1,4 @@
+rm -rf build
 forester build
 
 git add .

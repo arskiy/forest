@@ -1,0 +1,25 @@
+\title{Propriedade universal do coproduto}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Teorema}
+
+\p{Sejam \catname{C} uma [categoria](cat-0001) e #{A, B \in \catname{C}}. O \textbf{coproduto} de #{A} e #{B} é um objeto #{A \amalg B \in \catname{C}} provido de dois morfismos #{i_A \from A \to  A \amalg B} e #{i_B \from B \to A \amalg B} tais que, para qualquer objeto #{Z} e morfismos #{f_A \from A \to Z} e #{f_B \from B \to Z}, existe um único morfismo #{\sigma \from A \amalg B \to Z} tal que o seguinte diagrama comuta:
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzEsMSwiQSBcXGFtYWxnIEIiXSxbMCwyLCJCIl0sWzIsMSwiWiJdLFsyLDEsImlfQiJdLFswLDEsImlfQSIsMl0sWzIsMywiZl9CIiwyLHsiY3VydmUiOjJ9XSxbMCwzLCJmX0EiLDAseyJjdXJ2ZSI6LTJ9XSxbMSwzLCJcXHNpZ21hIl1d
+    \tikzcd{
+    	A \\
+    	& {A \amalg B} & Z \\
+    	B
+    	\arrow["{i_A}"', from=1-1, to=2-2]
+    	\arrow["{f_A}", curve={height=-12pt}, from=1-1, to=2-3]
+    	\arrow["\sigma", from=2-2, to=2-3]
+    	\arrow["{i_B}", from=3-1, to=2-2]
+    	\arrow["{f_B}"', curve={height=12pt}, from=3-1, to=2-3]
+    }
+}
+
+\p{Em \catname{Set}, o coproduto corresponde à união disjunta de #{A} e #{B}.}
+
+\proof{
+  Pode-se mostrar que coproduto é [propriedade universal](cat-0007) por um argumento análogo ao usado no caso do [coproduto](cat-0008), mas obteremos um objeto inicial em uma categoria, ao invés de um objeto final.
+}

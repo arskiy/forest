@@ -1,0 +1,29 @@
+\title{Grupo livre}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Definição}
+
+\p{
+  Dado um conjunto #{A} arbitrário, o grupo livre #{F_A} é o grupo gerado por concatenações de elementos de #{A}. Ele também pode ser definido através da seguinte [propriedade universal](cat-0007), que também nos informa que se existe um grupo livre, ele é único a menos de isomorfismo:}
+
+\p{ Seja #{A} um conjunto. #{F_A} é dito seu grupo livre se existe #{\iota \from A \to F_A} tal que, para todo grupo #{G} e #{f \from A \to G} existe um \textit{único} homomorfismo de grupos #{\phi \from F_A \to G} tal que o seguinte diagrama comuta:
+    % https://q.uiver.app/#q=WzAsMyxbMCwxLCJBIl0sWzAsMCwiRl9BIl0sWzEsMCwiRyJdLFswLDIsImYiLDJdLFswLDEsIlxcaW90YSJdLFsxLDIsIlxcdmFycGhpIl1d
+    \quiver{\begin{tikzcd}
+    	{F_A} & G \\
+    	A
+    	\arrow["\varphi", from=1-1, to=1-2]
+    	\arrow["\iota", from=2-1, to=1-1]
+    	\arrow["f"', from=2-1, to=1-2]
+    \end{tikzcd}}
+}
+
+\p{Observe que #{F_A} é o objeto inicial da categoria #{\mathcal{C}_A}, definida da seguinte forma: seus objetos são da forma #{(G, \iota)} onde #{G} é um grupo e #{\iota \from A \to G}, e seus morfismos #{(G_1, \iota_1) \to (G_2, \iota_2)} são da forma #{\{\phi \from G_1 \to G_2 : \phi \text{ é homomorfismo de grupos e } \phi \circ \iota_1 = \iota_2\}}. Portanto, pelo [teorema da bobagem abstrata geral](cat-0007), todos os grupos livres de #{A} são isomorfos.}
+
+\p{Com a unicidade demonstrada, resta mostrar a existência de um grupo livre para #{A}.}
+
+\p{Intuitivamente, um grupo livre é o conjunto das palavras que podem ser formadas com um alfabeto #{A} juntamente com suas inversas. Assim, uma palavra #{w} no alfabeto #{A} é um conjunto ordenado #{(a_1, \cdots, a_n)}, que será escrito como #{w = a_1 \cdots a_n}, para #{a_i \in A} ou #{a_i^{-1} \in A}. No entanto, desejamos que a palavra #{aa^{-1} a b} seja igual a #{ab}. Portanto, precisamos antes reduzir essas palavras, e o conjunto das palavras reduzidas munido da operação de concatenação é o nosso grupo livre #{F_A}.}
+
+\p{O grupo livre definido dessa forma satisfaz a propriedade universal descrita acima, ao fixarmos #{\iota \from A \to F_A} por #{a \mapsto a}, e assim, para todo grupo #{G} e #{f \from A \to G}, podemos estender #{f} a um homomorfismo #{\phi\from F_A \to G} tal que #{\phi(a) = f(a)} e #{\phi(a^{-1}) = f(a)^{-1}} para todo #{a \in A}, de modo que #{\phi(w w') = \phi(w) \phi(w')}. Observe também que, por construção, #{\phi \circ \iota = f}, uma vez que #{\phi(a) = f(a)} para #{a \in A}.}
+
+\p{Então, de fato, existe um grupo livre #{F_A} para todo conjunto #{A}.}

@@ -1,0 +1,23 @@
+\title{Transformação Natural}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Definição}
+
+\p{
+  Uma \textbf{transformação natural} entre dois [funtores](cat-000a) #{F, G \from \catname{C} \to \catname{D}} é uma aplicação #{\eta} denotada #{\eta \from F \Rightarrow G} que, para cada objeto #{X \in \catname{C}}, associa um morfismo #{\eta(X) \from F(X) \to G(X)} em \catname{D}, de tal forma que os diagramas abaixo são comutativos. 
+    % https://q.uiver.app/#q=WzAsOCxbNCwwLCJGKFgpIl0sWzYsMCwiRihZKSJdLFs0LDIsIkcoWCkiXSxbNiwyLCJHKFkpIl0sWzAsMSwiWCJdLFsyLDEsIlkiXSxbOCwxLCJcXG1hdGhiZntDfSJdLFsxMCwxLCJcXG1hdGhiZntEfSJdLFswLDIsIlxcZXRhKFgpIiwyXSxbMSwzLCJcXGV0YShZKSJdLFsyLDMsIkcoZikiLDJdLFswLDEsIkYoZikiXSxbNCw1LCJmIl0sWzYsNywiRiIsMCx7ImN1cnZlIjotMn1dLFs2LDcsIkciLDIseyJjdXJ2ZSI6Mn1dLFsxMywxNCwiXFxldGEiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9fV1d
+    \tikzcd{
+    	&&&& {F(X)} && {F(Y)} \\
+    	X && Y &&&&&& {\mathbf{C}} && {\mathbf{D}} \\
+    	&&&& {G(X)} && {G(Y)}
+    	\arrow["{F(f)}", from=1-5, to=1-7]
+    	\arrow["{\eta(X)}"', from=1-5, to=3-5]
+    	\arrow["{\eta(Y)}", from=1-7, to=3-7]
+    	\arrow["f", from=2-1, to=2-3]
+    	\arrow[""{name=0, anchor=center, inner sep=0}, "F", curve={height=-12pt}, from=2-9, to=2-11]
+    	\arrow[""{name=1, anchor=center, inner sep=0}, "G"', curve={height=12pt}, from=2-9, to=2-11]
+    	\arrow["{G(f)}"', from=3-5, to=3-7]
+    	\arrow["\, \eta", Rightarrow, from=0, to=1]
+    }
+}

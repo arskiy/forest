@@ -1,0 +1,21 @@
+\title{Exemplos de Categorias}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Exemplo}
+
+\p{Alguns exemplos de [categorias](cat-0001), algumas das quais usaremos com frequência:}
+
+\ul{
+  \li{A categoria \catname{Set} cujos objetos são conjuntos e funções são seus morfismos;}
+  \li{A categoria \catname{Grp} onde objetos são grupos e morfismos são homomorfismos de grupos;}
+  \li{\catname{Ab} onde objetos são grupos abelianos e morfismos são homomorfismos de grupos;}
+  \li{Para cada corpo #{k}, a categoria #{\Vect_k} onde os objetos são espaços vetoriais sobre o corpo #{k} e os morfismos são transformações lineares;}
+  \li{\catname{Ring} é a categoria dos anéis associativos com unidade, cujos morfismos são homomorfismos de anéis com unidade;}
+  \li{\catname{Rng} é a categoria dos anéis associativos;}
+  \li{\catname{CRing} é a categoria dos anéis comutativos e associativos com unidade, cujos morfismos são homomorfismos de anéis com unidade;}
+  \li{\catname{Top} é a categoria dos espaços topológicos, onde morfismos são funções contínuas;}
+  \li{#{\catname{Top}_*} é a categoria dos espaços topológicos com um ponto marcado, onde os objetos são duplas #{(X, x_0)}, onde #{X} é um espaço topológico e #{x_0 \in X}, e seus morfismos #{f \from (X, x_0) \to (Y, y_0)} são funções contínuas #{f \from X \to Y} tais que #{f(x_0) = f(y_0)};}
+  \li{#{_{R}\catname{Mod}} é a categoria dos [#{R}-módulos à esquerda](halg-0004);}
+  \li{#{\catname{Mod}_{R}} é a categoria dos [#{R}-módulos à direita](halg-0004).}
+}

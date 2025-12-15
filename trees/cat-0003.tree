@@ -1,0 +1,7 @@
+\title{Categoria oposta}
+\date{2025-12-15}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Definição}
+
+\p{Dada uma [categoria](cat-0001) \catname{C}, podemos construir sua categoria \textbf{oposta} (ou \textbf{dual}), denotada #{\catname{C}^{\mathrm{op}}} ao inverter todos seus morfismos. Isto é, #{\Obj(\catname{C}^{\mathrm{op}}) = \Obj(\catname{C})}, e #{\Hom_{\catname{C}^{\mathrm{op}}}(A, B) = \Hom_\catname{C}(B, A)}.}

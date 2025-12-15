@@ -713,5 +713,8 @@ ol li ol li ol {
 
 ul {
   list-style-type: square;
-  color: #333;
+}
+
+ul li::marker {
+  color: #555;
 }
