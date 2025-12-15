@@ -1,0 +1,11 @@
+\title{Árvores incompletas}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Meta}
+
+\p{Minhas árvores incompletas. Caso você acesse uma delas, essa página aparecerá como backlink.}
+
+\query\datalog{
+ ?X -:
+   {\rel/has-tag ?X '{todo}}
+}

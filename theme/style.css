@@ -3,7 +3,7 @@
 :root {
   --content-gap: 15px;
   --radius: 5px;
-  --font: "NCM", "NewComputerModern10", "New Computer Modern", "Noto Serif SC", serif;
+  --font: "Inria Sans", sans-serif;
   --monospace: "Computer Modern Typewriter", monospace;
 }
 
@@ -248,15 +248,14 @@ nav#toc .link {
 }
 
 nav#toc a.bullet {
-  opacity: 0.7;
+  opacity: 0.4;
   margin-left: 0.4em;
   margin-right: 0.3em;
+  margin-bottom: 0.1em;
   display: inline-block;
-  vertical-align: baseline;
-  width: 0.6em;
-  height: 0.6em;
-  border-radius: 50%;
-  border: 1px solid #555;
+  width: 0.4em;
+  height: 0.4em;
+  background-color: #000;
 }
 
 nav#toc a.bullet:hover {
@@ -289,11 +288,6 @@ nav#toc li {
 .katex {
   font-size: 1em !important;
   -webkit-text-stroke-width: 0pt;
-
-  /* Simple hack to get a font. Maybe we can read the context for more variations. */
-  .cjk_fallback {
-    font-family: "Source Han Serif SC VF"
-  }
 }
 
 .block {
@@ -313,7 +307,6 @@ nav#toc li {
 
 .block:hover {
   background-color: rgba(0, 100, 255, 0.04);
-  border: 1px solid rgb(0, 100, 255, .5);
 }
 
 .block.highlighted {
@@ -369,6 +362,15 @@ nav#toc li {
 a.link.local,
 .link.local a,
 a.slug,
+.link.github,
+.link.mastodon,
+.link.email {
+  text-decoration: underline #11222255;
+  -webkit-text-decoration: underline #11222255;
+  text-decoration-thickness: 1px;
+}
+
+.link.external,
 .link.github,
 .link.mastodon,
 .link.email {
@@ -545,12 +547,6 @@ a.slug:hover,
   background-color: rgba(0, 100, 255, .1);
 }
 
-
-
-a.bullet:hover {
-  color: black;
-}
-
 .link {
  cursor: pointer;
 }
@@ -671,12 +667,8 @@ ol li ol li ol {
   body {
     margin-top: 1em;
     margin-left: 0.3em;
-    margin-right: 0;
+    margin-right: 0.5em;
     transition: ease all .2s;
-  }
-
-  #grid-wrapper {
-    margin-right: 0.2em;
   }
 
   #grid-wrapper>nav {
@@ -686,14 +678,6 @@ ol li ol li ol {
 
   #grid-wrapper>article {
     max-width: none;
-  }
-
-  .block {
-    margin-right: -0.5em;
-    padding-right: 0.5em;
-    border-right: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
   }
 
   .block:hover {

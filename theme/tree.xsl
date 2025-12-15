@@ -371,7 +371,7 @@
           <xsl:when test="f:frontmatter/f:meta[@name='lang']">
             <xsl:value-of select="f:frontmatter/f:meta[@name='lang']" />
           </xsl:when>
-          <xsl:otherwise>en</xsl:otherwise>
+          <xsl:otherwise>pt-BR</xsl:otherwise>
         </xsl:choose>
       </xsl:attribute>
 
