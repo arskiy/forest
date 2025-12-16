@@ -1,0 +1,13 @@
+\import{macros}
+\title{Categorias #{\cat{Set}^{\cat{C}}} e #{\cat{Set}^{\cat{C}^\op}}}
+\date{2025-12-16}
+\author{alice-micheloni}
+\taxon{Definição}
+
+\p{
+  Para uma categoria #{\cat{C}}, o conjunto dos funtores #{F \from \cat{C} \to \cat{Set}} formam uma categoria, chamada de #{\cat{Set}^{\cat{C}}}. De forma análoga, os funtores #{F \from \cat{C}^\op \to \cat{Set}} (também conhecidos como pré-feixes) também formam uma categoria, chamada de #{\cat{Set}^{\cat{C}^\op}} (ou ainda categoria dos pré-feixes em \cat{C}). Em ambos os casos, os morfismos são transformações naturais entre esses funtores.
+}
+
+\p{
+  Isso de fato forma uma categoria: 
+}

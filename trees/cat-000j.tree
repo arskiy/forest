@@ -1,0 +1,9 @@
+\title{Lema de Yoneda}
+\date{2025-12-16}
+\author{alice-micheloni}
+\import{macros}
+\taxon{Lema}
+
+\p{
+  Vimos que os [funtores Hom](cat-000d) dão origem a aplicações #{X \mapsto \Hom(X, -)}, de um objeto #{X \in \cat{C}} à um funtor #{\Hom(X, -)}.
+}
