@@ -147,6 +147,15 @@
     </li>
   </xsl:template>
 
+  
+  <xsl:template match="f:meta[@name='lattes']">
+    <li class="meta-item">
+      <a class="link lattes" href="{.}">
+        <xsl:value-of select="." />
+      </a>
+    </li>
+  </xsl:template>
+
   <xsl:template match="f:meta[@name='github']">
     <li class="meta-item">
       <a class="link github" href="{.}">

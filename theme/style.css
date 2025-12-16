@@ -332,6 +332,7 @@ nav#toc li {
 .link.github,
 .link.mastodon,
 .link.email,
+.link.lattes,
 .meta-item .link.external {
   color: gray;
   font-weight: 200;
@@ -342,6 +343,7 @@ nav#toc li {
 .doi, .orcid, .link.raw,
 .link.github,
 .link.mastodon,
+.link.lattes,
 .link.email,
 .meta-item .link.external {
   line-break: anywhere;
@@ -363,6 +365,7 @@ a.link.local,
 .link.local a,
 a.slug,
 .link.github,
+.link.lattes,
 .link.mastodon,
 .link.email {
   text-decoration: underline #11222255;
@@ -380,6 +383,7 @@ a.slug,
 }
 
 .link.external:not(.tag *)::after,
+.link.lattes::after,
 .link.github::after,
 .link.mastodon::after,
 .link.email::after {
@@ -399,6 +403,14 @@ a.slug,
 
 .link.github::after {
   background-image: url("github.svg");
+  height: 0.9em;
+  width: 0.9em;
+  margin-left: 3pt;
+  margin-top: 0.1em;
+}
+
+.link.lattes::after {
+  background-image: url("lattes.png");
   height: 0.9em;
   width: 0.9em;
   margin-left: 3pt;

@@ -19,7 +19,6 @@
         <link rel="stylesheet" href="{/f:tree/@base-url}style.css" />
         <link rel="stylesheet" href="{/f:tree/@base-url}katex.min.css" />
         <link rel="stylesheet" href="{/f:tree/@base-url}computer-modern.css" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cn-fontsource-source-han-serif-sc-vf@1.0.9/font.min.css"/>
         <script type="text/javascript">
           <xsl:if test="/f:tree/f:frontmatter/f:source-path">
             <xsl:text>window.sourcePath = '</xsl:text>
@@ -262,6 +261,7 @@
           <xsl:apply-templates select="f:meta[@name='orcid']" />
           <xsl:apply-templates select="f:meta[@name='external']" />
           <xsl:apply-templates select="f:meta[@name='email']" />
+          <xsl:apply-templates select="f:meta[@name='lattes']" />
           <xsl:apply-templates select="f:meta[@name='mastodon']" />
           <xsl:apply-templates select="f:meta[@name='github']" />
           <xsl:apply-templates select="f:meta[@name='slides']" />
