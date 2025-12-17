@@ -1,0 +1,21 @@
+\import{macros}
+\title{Um objeto é completamente determinado pelos seus morfismos}
+\date{2025-12-17}
+\author{alice-micheloni}
+\taxon{Observação}
+
+\p{
+  Uma vez que [#{\yo} é plenamente fiel](cat-000o), usando que [funtores plenamente fiéis preservam isomorfismos](cat-000n), obtemos que #{X \cong Y \iff \Hom(X, -) \cong \Hom(Y, -)}. Eu particularmente acho esse um dos resultados mais lindos que já vi. A ida é óbvia; já a volta nos diz que o objeto que estamos estudando é essencialmente irrelevante, pois é completamente determinado (a menos de isomorfismo) pelos morfismos que saem dele.
+}
+  
+\p{
+  Pode-se obter um resultado de forma completamente análoga usando o [Lema de Coneda](cat-000l) e fazendo #{\yo \from X \mapsto \Hom(-, X)} (que se torna um funtor covariante), onde obtemos #{X \cong Y \iff \Hom(-, X) \cong \Hom(-, Y)}, e portanto se estamos estudando as funções onde #{X} é domínio, não estamos ganhando nem perdendo nenhuma informação comparado a olhar as funções onde #{Y} é contradomínio.
+}
+
+\p{
+  Por exemplo, uma variedade é completamente determinado pela totalidade das funções diferenciáveis que saem dela, e um espaço topológico é completamente determinado pelas funções contínuas que chegam nele; por exemplo, podemos recuperar os grupos de homotopia de #{X} ao estudar #{\Hom(\SS^n, X)}. Ao olhar para todas as outras funções, recuperamos por completo todas as informações de #{X}.
+}
+
+\p{
+  Esse é o chamado \emph{ponto de vista categórico}, onde se prefere estudar os funtores #{\Hom(X, -)} ao invés das propriedades de #{X}, fundado por Grothendieck.
+}

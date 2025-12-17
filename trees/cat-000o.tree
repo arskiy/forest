@@ -1,0 +1,31 @@
+\import{macros}
+\title{O [mergulho de Yoneda](cat-000m) é [plenamente fiel](cat-000e)}
+\date{2025-12-17}
+\author{alice-micheloni}
+\taxon{Corolário}
+\proof{
+  \p{
+    A injetividade de #{\yo_{X, Y} \from \Hom(X, Y) \to \Nat(\Hom(Y, -), \Hom(X, -))} é clara: tome #{f, g \from X \to Y}. Portanto, se #{\Hom(f, Y) = f^* = g^* = \Hom(g, Y)}, então #{f^*(\id_Y) = g^*(\id_Y)} e #{f = g}.
+  }
+
+  \p{
+    Para a sobrejetividade, tome #{F = \Hom(X, -)} e #{Y \in \cat{C}} no Lema de Yoneda. Assim, obtemos uma bijeção #{\Hom(X, Y) \cong \Nat(\Hom(Y, -), \Hom(X, -))}.} 
+  
+  \p{
+    Seja #{\eta \from \Hom(Y, -) \Rightarrow \Hom(X, -)} uma transformação natural. Queremos mostrar a existência de um morfismo #{f \from X \to Y} tal que #{\eta = \Hom(f, -)}. Pelo parágrafo anterior, existe um único #{f \in \Hom(X, Y)} associado a #{\eta}, dado por #{f = \eta(Y)(\id_Y)}. Agora, para quaisquer #{Z, W \in \cat{C}} e #{g \from Z \to W}, pela naturalidade de #{\eta}, nós temos que o seguinte diagrama comuta:
+    \quiver{
+      % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG1hdGhybXtIb219KFksIFopIl0sWzIsMCwiXFxtYXRocm17SG9tfShZLCBXKSJdLFswLDIsIlxcbWF0aHJte0hvbX0oWCwgWikiXSxbMiwyLCJcXG1hdGhybXtIb219KFgsIFcpIl0sWzAsMSwiZ18qIl0sWzAsMiwiXFxldGEoWikiLDJdLFsxLDMsIlxcZXRhKFcpIl0sWzIsMywiZ18qIiwyXV0=
+      \begin{tikzcd}
+        {\mathrm{Hom}(Y, Z)} && {\mathrm{Hom}(Y, W)} \\
+        \\
+        {\mathrm{Hom}(X, Z)} && {\mathrm{Hom}(X, W)}
+        \arrow["{g_*}", from=1-1, to=1-3]
+        \arrow["{\eta(Z)}"', from=1-1, to=3-1]
+        \arrow["{\eta(W)}", from=1-3, to=3-3]
+        \arrow["{g_*}"', from=3-1, to=3-3]
+      \end{tikzcd}
+    }
+
+    Observando-o concluímos que #{\eta(W) \circ g_* = g_* \circ \eta(Z)}, e portanto, para todo #{h \from Y \to Z}, vale #{\eta(W)(g \circ h) = g \circ \eta(Z)(h)}. Se tomarmos #{Z = Y} e #{h = \id_Y}, obtemos #{\eta(W)(g) = g \circ \eta(Y)(\id_Y) = g \circ f}, e como #{W} e #{g} são arbitrários, está demonstrado que #{\eta = \Hom(f, -)}.
+  }
+}

@@ -730,3 +730,7 @@ ul {
 ul li::marker {
   color: #555;
 }
+
+.blacksquare {
+  float: right;
+}

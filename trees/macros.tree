@@ -379,6 +379,7 @@
     \subtree{
       \taxon{Demonstração}
       \body
+      \<html:p>[class]{blacksquare}{#{\blacksquare}}
     }
   }
 }
@@ -429,6 +430,7 @@
 \def\Set{#{\Cat{Set}}}
 \def\sSet{#{\Cat{sSet}}}
 \def\asSet{#{\Cat{asSet}}}
+\def\Nat{#{\mathrm{Nat}}}
 \def\op{#{\textrm{op}}}
 \def\id{#{\textrm{id}}}
 \def\Id{#{\textrm{Id}}}
