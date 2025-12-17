@@ -9,5 +9,5 @@
 }
 
 \proof{
-  Suponha #{f \from X \to Y}. Então #{1_X = f^{-1} \circ f}, e portanto #{1_{F(X)} = F(f^{-1}) \circ F(f)}, e o mesmo vale para #{1_Y = f \circ f^{-1}}. Dessa forma, #{F(f)} é um isomorfismo, e #{F(X) \cong F(Y)}. Tome agora um isomorfismo #{g \from F(X) \to F(Y)}. Como #{F} é plenamente fiel, existe um único #{h \from X \to Y} tal que #{F(h) = g}, e também um único #{i \from Y \to X} tal que #{F(i) = g^{-1}}. Então #{F(\id_X) = \id_{F(X)} = g^{-1} \circ g = F(i \circ h)}. Como #{F} é fiel, concluímos que #{i \circ h = \id_X}. Por um argumento análogo, obtemos que #{h \circ i = \id_Y}. Portanto #{X \cong Y}.
+  Suponha #{f \from X \to Y}. Então #{1_X = f^{-1} \circ f}, e portanto #{1_{F(X)} = F(f^{-1}) \circ F(f)}, e o mesmo vale para #{1_Y = f \circ f^{-1}}. Dessa forma, #{F(f)} é um isomorfismo, e #{F(X) \cong F(Y)}. Tome agora um isomorfismo #{g \from F(X) \to F(Y)}. Como #{F} é plenamente fiel, existe um único #{h \from X \to Y} tal que #{F(h) = g}, e também um único #{i \from Y \to X} tal que #{F(i) = g^{-1}}. Então ##{F(\id_X) = \id_{F(X)} = g^{-1} \circ g = F(i \circ h)}. Como #{F} é fiel, concluímos que #{i \circ h = \id_X}. Por um argumento análogo, obtemos que #{h \circ i = \id_Y}. Portanto #{X \cong Y}.
 }
