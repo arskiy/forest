@@ -26,6 +26,6 @@
       \end{tikzcd}
     }
 
-    Observando-o concluímos que #{\eta(W) \circ g_* = g_* \circ \eta(Z)}, e portanto, para todo #{h \from Y \to Z}, vale #{\eta(W)(g \circ h) = g \circ \eta(Z)(h)}. Se tomarmos #{Z = Y} e #{h = \id_Y}, obtemos ##{\eta(W)(g) = g \circ \eta(Y)(\id_Y) = g \circ f}, e como #{W} e #{g} são arbitrários, está demonstrado que #{\eta = \Hom(f, -)}.
+    Observando-o concluímos que #{\eta(W) \circ g_* = g_* \circ \eta(Z)}, e portanto, para todo #{h \from Y \to Z}, vale #{\eta(W)(g \circ h) = g \circ \eta(Z)(h)}. Se tomarmos #{Z = Y} e #{h = \id_Y}, obtemos ##{\eta(W)(g) = g \circ \eta(Y)(\id_Y) = g \circ f,} e como #{W} e #{g} são arbitrários, está demonstrado que #{\eta = \Hom(f, -)}.
   }
 }
