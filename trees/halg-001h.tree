@@ -1,0 +1,19 @@
+\import{macros}
+\title{Funtores produto tensorial são exatos à direita}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Proposição}
+
+\p{
+  Sejam #{R \in \catname{CRing}} e #{M \in \Rmod}. Então #{M \otimes_R -} e #{- \otimes_R M} são exatos à direita.
+}
+
+\proof{
+  \p{
+    Dada uma sequência exata #{0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0}, queremos mostrar que ##{M \otimes A \xrightarrow{1 \otimes f} M \otimes B \xrightarrow{1 \otimes g} M \otimes C \to 0} é uma sequência exata.}
+
+  \p{
+    Pelas [propriedades do produto tensorial](halg-0010), obtemos um isomorfismo natural entre #{M \otimes_R -} e #{- \otimes_R M}, e portanto, #{- \otimes_R M} também é exato à direita.
+    % https://math.stackexchange.com/questions/4208986/if-a-functor-is-isomorphic-to-an-exact-functor-is-it-exact
+  }
+}

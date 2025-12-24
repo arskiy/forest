@@ -1,0 +1,19 @@
+\import{macros}
+\title{Produtos e coprodutos em \Rmod}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{}
+
+\p{
+  Daqui em diante, #{R}-módulos à esquerda serão chamados apenas de "módulos" e #{R}-homomorfismos de "homomorfismos" e #{R} é um anel associativo com unidade.
+}
+
+\transclude{halg-000j}
+
+\transclude{halg-000k}
+
+\transclude{halg-000l}
+
+\transclude{halg-000m}
+
+\transclude{halg-000n}

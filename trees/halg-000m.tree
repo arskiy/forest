@@ -1,0 +1,25 @@
+\import{macros}
+\title{Soma direta é um [coproduto](cat-0009)}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Teorema}
+
+\p{
+  Seja #{\{M_i\}_{i \in I}} uma família de #{R}-módulos. Dados um #{R}-módulo #{P} e uma coleção de homomorfismos #{\{\psi_k \from M_k \to P\}_{k \in I}}, existe um único homomorfismo #{\psi \from \bigoplus_{i \in I} M_i \to P} tal que o seguinte diagrama comuta:
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXGJpZ29wbHVzX3tpIFxcaW4gSX0gTV9pIl0sWzEsMCwiTV9rIl0sWzAsMSwiUCJdLFswLDIsIlxccHNpIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMCwiXFxpb3RhX2siLDJdLFsxLDIsIlxccHNpX2siXV0=
+    \quiver{\begin{tikzcd}
+    	{\bigoplus_{i \in I} M_i} & {M_k} \\
+    	P
+    	\arrow["\psi"', dashed, from=1-1, to=2-1]
+    	\arrow["{\iota_k}"', from=1-2, to=1-1]
+    	\arrow["{\psi_k}", from=1-2, to=2-1]
+    \end{tikzcd}}
+}
+
+\proof{
+  Para todo #{\{x_i\}_{i \in I} = x \in \bigoplus_{i \in I} M_i}, defina ##{\psi(x) = \sum_{i \in I} \psi_i(x_i).} 
+  #{\psi} está bem definida pois #{x_i \neq 0} apenas para um número finito de índices, e claramente faz o diagrama acima comutar.
+  Tome agora também #{y = \{y_i\}_{i \in I}}, e temos ##{\psi(x + y) = \sum_{i \in I} \psi_i(x_i + y_i) = \sum_{i \in I} \psi_i(x_i) + \psi_i(y_i) = \sum_{i \in I} \psi_i(x_i) + \sum_{i \in I} \psi_i(y_i) = \psi(x) + \psi(y).}
+  Para #{r \in R} arbitrário, também temos ##{\psi(rx) = \sum_{i \in I} \psi_i(rx_i) = \sum_{i \in I} r\psi_i(x_i) = r\sum_{i \in I} \psi_i(x_i) = r\psi(x).}
+  Portanto #{\psi} é homomorfismo. Ao mesmo tempo, é evidente que a condição de que #{\psi \circ \iota_k = \psi_k} faz com que esse homomorfismo seja único.
+}

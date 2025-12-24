@@ -1,0 +1,13 @@
+\import{macros}
+\title{Conjunto gerador de um módulo}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Definição}
+
+\p{
+  Dados um #{R}-módulo #{M} e um subconjunto #{S \subset M}, então #{S} é dito um \textbf{conjunto gerador} de #{M} se, dado #{m \in M} arbitrário, ele pode ser escrito como combinação linear de elementos de #{S} com coeficientes em #{R}.
+}
+
+\p{
+  Um #{R}-módulo #{M} é dito \textbf{finitamente gerado} se admite um conjunto gerador de cardinalidade finita. Se esse conjunto gerador for unitário, #{M} é dito \textbf{cíclico}.
+}

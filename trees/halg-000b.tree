@@ -5,6 +5,9 @@
 \taxon{Definição}
 
 \p{
-  Se #{N} é um [submódulo](halg-0007) de #{M}, então #{N} é um subgrupo (que é normal, já que #{(M, +)} é abeliano), e desse modo podemos definir o quociente #{M/N} como um grupo abeliano. Para dar #{M/N} a estrutura de #{R}-módulo à esquerda, escolhemos-na de modo a tornar a projeção #{\pi \from M \to M/N} um #{R}-homomorfismo. Então ##{r(m + N) = r\pi(m) = \pi(rm) = rm + N,}
-  para todo #{r \in R, m \in M}. Dessa forma, #{r(m + N) = rm + N}.
+  Se #{N} é um [submódulo](halg-0007) de #{M}, então #{N} é um subgrupo (que é normal, já que #{(M, +)} é abeliano), e desse modo podemos definir o quociente #{M/N} como um grupo abeliano.}
+  
+\p{Para dar #{M/N} a estrutura de #{R}-módulo à esquerda, escolhemos-na de modo a tornar a projeção #{\pi \from M \to M/N} um #{R}-homomorfismo. Então ##{r(m + N) = r\pi(m) = \pi(rm) = rm + N,}}
+  \p{
+    para todo #{r \in R, m \in M}. Dessa forma, #{r(m + N) = rm + N}.
 }

@@ -1,0 +1,9 @@
+\import{macros}
+\title{Produto direto de #{R}-módulos}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Definição}
+
+\p{
+  Seja #{\{M_i\}_{i \in I}} uma família de #{R}-módulos. O \textbf{produto direto} de #{\{M_i\}_{i \in I}}, denotado por ##{\prod_{i \in I} M_i,} é o #{R}-módulo à esquerda definido no conjunto #{\Pi_{i \in I} M_i} com adição ##{\{v_i\}_{i \in I} + \{w_i\}_{i \in I} = \{v_i + w_i\}_{i \in I},} e ação ##{r\{v_i\}_{i \in I} = \{rv_i\}_{i \in I}.}
+}

@@ -1,0 +1,14 @@
+\import{macros}
+\title{Propriedades do produto tensorial}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Proposição}
+
+\p{
+  Sejam #{R \in \catname{CRing}} e #{L, M, N \in \Rmod}. Então
+  \ul{
+    \li{#{R \otimes_R M \cong M};}
+    \li{#{M \otimes_R N \cong N \otimes_R M};}
+    \li{#{L \otimes_R (M \otimes_R N) \cong (L \otimes_R M) \otimes_R N}.}
+  }
+}

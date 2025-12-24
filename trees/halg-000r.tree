@@ -1,0 +1,30 @@
+\import{macros}
+\title{Definições equivalentes de módulo livre}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Proposição}
+
+\p{
+  Seja #{M} um #{R}-módulo. As seguintes afirmações são equivalentes:
+
+  \ol{
+      \li{#{M} é livre;}
+      \li{Existe uma família de submódulos cíclicos #{\{N_i\} \subset M} com #{N_i \cong R} tais que #{M \cong \bigoplus_i N_i};}
+      \li{Existe um conjunto #{X \neq \emptyset} tal que #{M \cong \bigoplus_{x \in X} R}. Se #{|X| < \aleph_0}, podemos escrever também #{M \cong \underbrace{R \oplus \cdots \oplus R}_{|X| \text{ vezes}}};}
+      \li{Existe um conjunto #{X \neq \emptyset} e uma inclusão #{\iota \from X \to M} tal que para todo #{R}-módulo #{N} e função #{\phi \from X \to N}, existe um único homomorfismo #{\overline{\phi} \from M \to N} tal que o seguinte diagrama comuta:
+      % https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiTSJdLFsxLDEsIk4iXSxbMCwxLCJcXGlvdGEiXSxbMCwyLCJcXHZhcnBoaSIsMl0sWzEsMiwiXFxvdmVybGluZXtcXHZhcnBoaX0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+      \quiver{\begin{tikzcd}
+        X & M \\
+        & N
+        \arrow["\iota", from=1-1, to=1-2]
+        \arrow["\varphi"', from=1-1, to=2-2]
+        \arrow["{\overline{\varphi}}", dashed, from=1-2, to=2-2]
+      \end{tikzcd}}
+
+      Em palavras, temos #{\overline{\phi}\left(\sum_{x \in X} r_xe_x\right) = \sum_{x \in X} r_x \phi(x)}, onde #{r_x \in R} e #{\iota(x) = e_x = \{\delta_x(y)\}_{y \in X}} tal que ##{\delta_x(y) = \begin{cases}1, & \text{se } y = x \\ 0, &\text{se } y \neq x\end{cases}}}
+  }
+}
+
+\p{
+  Observe que #{(3) \implies (4)} é essencialmente um corolário da [propriedade universal da soma direta](halg-000m), e as outras implicações são autoevidentes.
+}

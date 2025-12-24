@@ -1,0 +1,13 @@
+\import{macros}
+\title{Terceiro Teorema do Isomorfismo}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Proposição}
+
+\p{
+    Sejam #{N, P} submódulos à esquerda de um #{R}-módulo à esquerda #{M}. Então #{N + P} é um submódulo de #{M}, #{N \cap P} é um submódulo de #{P} e ##{\frac{N + P}{N} \cong \frac{P}{N \cap P}.}
+}
+
+\p{
+  Mais geralmente, a soma #{\sum_i N_i} e a interseção #{\bigcap_i N_i} de uma família #{(N_i)_i} de submódulos de um #{R}-módulo à esquerda #{M} são também submódulos de #{M}.
+}

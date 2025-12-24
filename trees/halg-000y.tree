@@ -1,0 +1,35 @@
+\import{macros}
+\title{Produto tensorial de #{R}-módulos}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Definição}
+
+\p{
+  Dados #{M, N, P} #{R}-módulos, o \textbf{produto tensorial} de #{M} e #{N} sobre #{R}, denotado #{M \otimes_R N}, é um #{R}-módulo com uma aplicação R-bilinear ##{\otimes \from M \times N \to M \otimes_R N} tal que todo mapa #{R}-bilinear #{\phi \from M \times N \to P} é fatorado unicamente por #{\otimes}, isto é, existe um único homomorfismo #{\overline{\phi} \from M \otimes_R N \to P} tal que o seguinte diagrama comuta:
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIFxcdGltZXMgTiJdLFsxLDAsIlAiXSxbMCwxLCJNIFxcb3RpbWVzX1IgTiJdLFswLDEsIlxcdmFycGhpIl0sWzAsMiwiXFxvdGltZXMiLDJdLFsyLDEsIlxcb3ZlcmxpbmV7XFx2YXJwaGl9IiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+    \quiver{\begin{tikzcd}
+    	{M \times N} & P \\
+    	{M \otimes_R N}
+    	\arrow["\varphi", from=1-1, to=1-2]
+    	\arrow["\otimes"', from=1-1, to=2-1]
+    	\arrow["{\overline{\varphi}}"', dashed, from=2-1, to=1-2]
+    \end{tikzcd}}
+
+    Essa é a [\textbf{propriedade universal}](cat-0007) do produto tensorial de #{R}-módulos.
+}
+
+\p{
+  Note que, por termos definido o produto tensorial por uma propriedade universal, o produto tensorial e o produto bilinear #{\otimes} são únicos à menos de isomorfismo.
+}
+
+\p{
+  Observe também que o subscrito #{R} em #{\otimes_R} é relevante -- #{M} e #{N} podem ser tanto #{R}-módulos quanto #{S}-módulos, e a estrutura de mapas bilineares sobre #{S} ou sobre #{R} é diferente, e portanto, o anel onde se está operando é importante.
+}
+
+\p{
+  O que demonstramos é que se o produto tensorial existe, ele é único. Resta mostrar sua existência, que é um tanto laboriosa e não é particularmente reveladora. Ela pode ser verificada em [[algebra-chapter-0]].
+}
+
+\notacao{
+  A aplicação bilinear #{\otimes \from M \times N \to M \otimes_R N} será denotada por #{\otimes(m, n) = m \otimes n}.
+}

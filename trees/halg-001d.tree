@@ -1,0 +1,53 @@
+\import{macros}
+\title{[Funtores Hom](cat-000d) são exatos à esquerda}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Proposição}
+
+\p{
+      Sejam #{R \in \catname{CRing}} e #{M \in \Rmod}. Então os funtores #{\Hom_R(M, -)} e #{\Hom_R(-, M)} são exatos à esquerda.
+}
+
+\proof{
+  Seja ##{0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0} uma sequência exata curta em #{\Rmod}. Queremos então mostrar que ##{0 \to \Hom_R(M, A) \xrightarrow{f_*} \Hom_R(M, B) \xrightarrow{g_*} \Hom_R(M, C)} é exata. Para tal, basta mostrar que #{\ker f_* = \{0\}} e #{\im f_* = \ker g_*}.
+
+    A primeira condição é evidente: Para #{\alpha \from M \to A}, Se #{f_* \alpha = f \circ \alpha = 0}, então #{\alpha = 0}, pois #{f} é injetor.
+
+    Agora, se existe #{\beta \from M \to B} tal que existe um #{\alpha \from M \to A} de modo que #{\beta = f \circ \alpha}, então #{g_* \beta = g_* f_* \alpha = (gf)_* \alpha = 0}, e portanto #{\im f_* \subset \ker g_*}. Isso pode ser visualizado no seguinte diagrama comutativo: 
+    % https://q.uiver.app/#q=WzAsNCxbMSwwLCJNIl0sWzAsMSwiQSJdLFsxLDEsIkIiXSxbMiwxLCJDIl0sWzAsMiwiXFxiZXRhIl0sWzAsMSwiXFxhbHBoYSIsMl0sWzAsMywiMCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDMsImciLDJdLFsxLDIsImYiLDJdXQ==
+    \quiver{\begin{tikzcd}
+    	& M \\
+    	A & B & C
+    	\arrow["\alpha"', from=1-2, to=2-1]
+    	\arrow["\beta", from=1-2, to=2-2]
+    	\arrow["0", dashed, from=1-2, to=2-3]
+    	\arrow["f"', from=2-1, to=2-2]
+    	\arrow["g"', from=2-2, to=2-3]
+    \end{tikzcd}}
+
+    Simultaneamente, se #{\beta \from M \to B} é tal que #{g_* \beta = 0}, então, para cada #{y \in M}, vale que #{\beta(y) \in \ker g = \im f}. Ergo, existe #{\alpha \from M \to A} único tal que #{\alpha(y) \in f^{-1}[\beta(y)]}, que é um conjunto unitário, pois #{f} é injetor. Note que #{\alpha} é homomorfismo pois é formada por composição de homomorfismos. Dessa forma, #{\beta = f_* \alpha}, e portanto #{\ker g_* \subset \im f_*}.
+    Essas relações podem ser visualizadas pelo seguinte diagrama comutativo: % https://q.uiver.app/#q=WzAsNCxbMSwwLCJNIl0sWzAsMSwiQSJdLFsxLDEsIkIiXSxbMiwxLCJDIl0sWzAsMiwiXFxiZXRhIl0sWzAsMSwiXFxleGlzdHMhIFxcLFxcYWxwaGEiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwzLCIwIl0sWzIsMywiZyIsMl0sWzEsMiwiZiIsMl1d
+% https://q.uiver.app/#q=WzAsNCxbMSwwLCJNIl0sWzAsMSwiQSJdLFsxLDEsIkIiXSxbMiwxLCJDIl0sWzAsMiwiXFxiZXRhIl0sWzAsMSwiXFxhbHBoYSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFswLDMsIjAiXSxbMiwzLCJnIiwyXSxbMSwyLCJmIiwyXV0=
+\quiver{\begin{tikzcd}
+	& M \\
+	A & B & C
+	\arrow["\alpha"', dashed, from=1-2, to=2-1]
+	\arrow["\beta", from=1-2, to=2-2]
+	\arrow["0", from=1-2, to=2-3]
+	\arrow["f"', from=2-1, to=2-2]
+	\arrow["g"', from=2-2, to=2-3]
+\end{tikzcd}}
+
+    A demonstração para #{\Hom_R(-, M)} é análoga.
+}
+
+\corolario{
+  Funtores Hom são exatos em [módulos livres](halg-001f)
+}{
+  \p{
+      Sejam #{R \in \catname{CRing}} e #{M \in \Rmod} um módulo livre. Então os funtores #{\Hom_R(M, -)} e #{\Hom_R(-, M)} são exatos.
+  }
+  \proof{
+        Como [funtores Hom são exatos à esquerda](halg-001d), #{\Hom_R(M, -)} é exato à esquerda. Resta mostrar então #{g_*} é sobrejetor, para #{g \from B \to C} sobrejetor como na proposição anterior. Isso reduz-se a, para todo #{\alpha \from M \to C}, escolhermos #{\beta \from M \to B} tal que #{g_*\beta = \alpha}. Fixe agora #{\mathcal{B}} uma base de #{M}, e para cada #{b \in \mathcal{B}}, tomar #{\beta(b) \in g^{-1}(\alpha(b))}. Como #{g} é sobrejetor, #{g^{-1}(\alpha(b)) \neq \emptyset}, para todo #{b}, e então podemos estender #{\beta} linearmente para que esteja definida em todo #{M}. A demonstração é análoga para #{\Hom(-, M)}.
+  }
+}

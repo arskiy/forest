@@ -1,0 +1,13 @@
+\import{macros}
+\title{Sequência exata}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Definição}
+
+\p{
+  Os #{R}-homomorfismos #{d_i} são chamados de #{i}-ésimo operador bordo ou diferencial de dimensão #{i}, e, suprimindo o índice, #{d} é chamado de apenas operador bordo ou diferencial. Os #{R}-módulos #{M_i} são chamados de #{n}-cadeias.
+}
+
+\p{
+  Um complexo é chamado de \textbf{sequência exata} se é exato para todo #{M_i}.
+}

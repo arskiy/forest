@@ -4,4 +4,4 @@
 \import{macros}
 \taxon{Definição}
 
-\p{Se um [homomorfismo](halg-0005) #{f \from M \to N} for bijetor, então #{f} é dito um isomorfismo de #{R}-módulos, e também #{M} e #{N} sào dito isomorfos, denotado por #{M \cong N}.}
+\p{Se um [homomorfismo](halg-0005) #{f \from M \to N} for bijetor, então #{f} é dito um isomorfismo de #{R}-módulos, e #{M} e #{N} são dito isomorfos, denotado por #{M \cong N}.}

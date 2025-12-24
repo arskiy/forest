@@ -1,0 +1,9 @@
+\import{macros}
+\title{Segundo Teorema do Isomorfismo}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Proposição}
+
+\p{
+  Sejam #{N, P} submódulos de um #{R}-módulo à esquerda #{M} tal que #{N \subset P}. Então #{P/N} é um submódulo de #{M/N}, e ##{\frac{M/N}{P/N} \cong \frac{M}{P}.}
+}

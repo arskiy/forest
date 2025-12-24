@@ -1,0 +1,26 @@
+\import{macros}
+\title{Produto direto é um [produto](cat-0008)}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Teorema}
+
+\p{
+  Seja #{\{M_i\}_{i \in I}} uma família de #{R}-módulos. Dados um #{R}-módulo #{P} e uma coleção de homomorfismos #{\{\phi_k \from P \to M_k\}_{k \in I}}, existe um único homomorfismo #{\phi \from P \to \prod_{i \in I} M_i} tal que o seguinte diagrama comuta:
+    \quiver{% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXHByb2RfaSBNX2kiXSxbMSwwLCJNX2siXSxbMCwxLCJQIl0sWzIsMCwiXFx2YXJwaGkiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwxLCJcXHBpX2siXSxbMiwxLCJcXHZhcnBoaV9rIiwyXV0=
+    \begin{tikzcd}
+    	{\prod_{i \in I} M_i} & {M_k} \\
+    	P
+    	\arrow["{\pi_k}", from=1-1, to=1-2]
+    	\arrow["\varphi", dashed, from=2-1, to=1-1]
+    	\arrow["{\varphi_k}"', from=2-1, to=1-2]
+    \end{tikzcd}}
+}
+
+\begin{proof}{
+  Seja #{j \in I} arbitrário. Queremos mostrar que #{\pi_j}, a projeção da #{j}-ésima coordenada, é um homomorfismo sobrejetor. Claramente #{\pi_j} é sobrejetor, e também é homomorfismo, uma vez que dados #{x, y \in \prod_{i \in I} M_i}, ##{\pi_j(x + y) = \pi_j(\{x_i\}_{i \in I} + \{y_i\}_{i \in I})= \pi_j(\{x_i + y_i\}_{i \in I}) = x_j + y_j = \pi_j(x) + \pi_j(x),} e dado #{r \in R}, ##{\pi_j(rx) = \pi_j(r\{x_i\}_{i \in I}) = \pi_j(\{rx_i\}_{i \in I}) = rx_j = r\pi_j(x).}
+
+  Agora, tome #{\phi} tal que, para #{p \in P}, #{\phi(p) = \{\phi_i(p)\}_{i \in I}}. Em outras palavras, escolhemos #{\phi} de modo que o diagrama acima comuta. Tome também #{p' \in P}. Então ##{\phi(p + p') = \{\phi_i(p + p')\}_{i \in I} = \{\phi_i(p) + \phi_i(p')\}_{i \in I} = \{\phi_i(p)\}_{i \in I} + \{\phi_i(p')\}_{i \in I} = \phi(p) + \phi(p').}
+
+  Ao mesmo tempo, tome #{r \in R}, e temos ##{\phi(rp) = \{\phi_i(rp)\}_{i \in I} = \{r\phi_i(p)\}_{i \in I} = r\{\phi_i(p)\}_{i \in I} = r\phi(p).}
+  Portanto #{\phi} é homomorfismo. A unicidade de #{\phi} é evidente: se existe outra #{\phi'} de modo que o diagrama acima comuta, ela precisaria concordar com #{\phi_i} em cada coordenada #{i \in I}, que é exatamente a definição de #{\phi}.
+}

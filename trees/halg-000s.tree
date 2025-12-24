@@ -1,0 +1,13 @@
+\import{macros}
+\title{Posto de um #{R}-módulo}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Proposição}
+
+\p{
+  Seja #{R} um anel comutativo. Então #{\bigoplus_{x \in X} R \cong \bigoplus_{y \in Y} R} se, e somente se, #{|X| = |Y|}. 
+}
+
+\corolario{}{
+  Se #{M} é um #{R}-módulo livre, então, para um conjunto #{X} tal que #{M = \bigoplus_{x \in X} R}, chamamos #{|X|} de \textbf{posto} de #{M}.
+}

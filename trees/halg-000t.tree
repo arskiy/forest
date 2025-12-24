@@ -1,0 +1,9 @@
+\import{macros}
+\title{Exemplos de módulos livres}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Exemplo}
+
+\p{
+  A soma direta de módulos livres é um módulo livre, todo espaço vetorial é um módulo livre, e todo anel é um módulo cíclico livre sobre si próprio, com base #{\{1\}}.
+}

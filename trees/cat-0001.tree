@@ -25,7 +25,7 @@
 \p{Note que usamos a palavra "coleção" ao invés de "conjunto"; isso não é ao acaso, observe que em cada um dos [exemplos abaixo](cat-0002), a existência de um conjunto que contém cada um dos objetos de cada categoria implicaria o paradoxo de Russell. Não lidaremos com esses problemas fundacionais nesse texto, que podem ser apropriadamente resolvidos ao escolher um sistema axiomático propício.
 }
 
-\p{Fixaremos também algumas convenções: \ul{
+\notacao{Fixaremos também algumas convenções: \ul{
     \li{#{A \in \catname{C}} para dizer #{A \in \Obj(\catname{C})};}
     \li{#{f \from A \to B} ou ainda #{A \xrightarrow{f} B} para dizer #{f \in \Hom_\catname{C}(A, B)};}
     \li{#{gf} para dizer #{g \circ f}.}

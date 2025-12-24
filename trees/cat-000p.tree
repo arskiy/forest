@@ -17,5 +17,9 @@
 }
 
 \p{
+  Ou ainda, um conjunto em \cat{Set} é determinado à menos de isomorfismo pela sua cardinalidade. A partir de funções para outros conjuntos e analisando se elas são injetoras ou sobrejetoras, podemos medir o tamanho do conjunto. O que o Lema de Yoneda nos diz é que ao olhar \emph{todas} essas funções, podemos obter a cardinalidade do conjunto.
+}
+
+\p{
   Esse é o chamado \emph{ponto de vista categórico}, onde se prefere estudar os funtores #{\Hom(X, -)} ao invés das propriedades de #{X}, fundado por Grothendieck.
 }

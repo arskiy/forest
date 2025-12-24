@@ -1,0 +1,18 @@
+\import{macros}
+\title{Exato à esquerda implica monomorfismo}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Observação}
+
+\p{
+  O complexo 
+        % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXGNkb3RzIl0sWzEsMCwiMCJdLFsyLDAsIkwiXSxbMywwLCJNIl0sWzQsMCwiXFxjZG90cyJdLFswLDFdLFsxLDJdLFsyLDMsImYiXSxbMyw0XV0=
+    \quiver{\begin{tikzcd}
+    	\cdots & 0 & L & M & \cdots
+    	\arrow[from=1-1, to=1-2]
+    	\arrow[from=1-2, to=1-3]
+    	\arrow["f", from=1-3, to=1-4]
+    	\arrow[from=1-4, to=1-5]
+    \end{tikzcd}}
+    é exato em #{L} se, e somente se, #{f} é um monomorfismo. Veja que, como o homomorfismo trivial #{0 \to L} possui como imagem #{0}, para que a sequência seja exata em #{L}, precisamos que #{\ker f = 0}, isto é, que #{f} seja injetora.
+}

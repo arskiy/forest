@@ -1,0 +1,17 @@
+\import{macros}
+\title{Funtor exato}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Definição}
+
+\p{
+  Sejam #{R, S \in \catname{CRing}}. Um funtor (aditivo) #{F \from {}_{R}\catname{Mod} \to {}_{S}\catname{Mod}} é dito um:
+
+    \ul{
+        \li{\textbf{funtor exato} se, para qualquer sequência exata curta #{0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0} em #{\Rmod}, a sequência #{0 \to FA \xrightarrow{Ff}FB \xrightarrow{Fg} FC \to 0} é exata em #{\Smod};}
+        \li{\textbf{funtor exato à esquerda} se, para qualquer sequência exata curta #{0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0} em #{\Rmod}, a sequência #{0 \to FA \xrightarrow{Ff}FB \xrightarrow{Fg} FC} é exata em #{\Smod};}
+        \li{\textbf{funtor exato à direita} se, para qualquer sequência exata curta #{0 \to A \xrightarrow{f} B \xrightarrow{g} C \to 0} em #{\Rmod}, a sequência #{FA \xrightarrow{Ff}FB \xrightarrow{Fg} FC \to 0} é exata em #{\Smod}.}
+    }
+
+    Ao trocar as direções apropriadamente, obtemos definições análogos para funtores contravariantes.
+}

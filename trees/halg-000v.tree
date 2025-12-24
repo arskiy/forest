@@ -1,0 +1,13 @@
+\import{macros}
+\title{Torção}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Definição}
+
+\p{
+  Um elemento #{m \in M} é dito \textbf{livre} se #{\Ann(m) = \{0\}}. Do contrário, #{m} é dito \textbf{elemento de torção}. #{M} é dito \textbf{livre de torção} se todos seus elementos não nulos são livres, \textbf{com torção} se #{M} possui pelo menos um elemento de torção não nulo, e \textbf{de torção} se todos os seus elementos são de torção.
+}
+
+\p{
+  Por exemplo, todo grupo abeliano finito é um #{\Z}-módulo de torção.
+}

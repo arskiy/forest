@@ -1,0 +1,13 @@
+\import{macros}
+\title{Funções #{R}-bilineares}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Definição}
+
+\p{
+  Sejam #{M, N, P} #{R}-módulos. Uma função #{\phi \from M \times N \to P} é dita #{R}-bilinear se
+  \ol{
+      \li{Para todo #{m \in M}, a função #{n \mapsto \phi(m, n)} é um homomorfismo;}
+      \li{Para todo #{n \in N}, a função #{m \mapsto \phi(m, n)} é um homomorfismo.}
+  }
+}

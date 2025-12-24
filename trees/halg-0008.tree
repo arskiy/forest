@@ -5,5 +5,5 @@
 \taxon{Observação}
 
 \p{
-  Como #{\Z} é inicial em #{\catname{Ring}}, existe um único homomorfismo de grupos de #{\Z} em #{\End_{\catname{Ab}} (G)}, para todo grupo abeliano #{G}. Pela segunda definição de [#{R}-módulo](halg-0004), #{G} é um #{\Z}-módulo, definido de maneira canônica.
+  Como #{\Z} é [inicial](cat-0007) em #{\catname{Ring}}, existe um único homomorfismo de grupos de #{\Z} em #{\End_{\catname{Ab}} (G)}, para todo grupo abeliano #{G}. Pela segunda definição de [#{R}-módulo](halg-0004), #{G} é um #{\Z}-módulo, definido de maneira canônica.
 }

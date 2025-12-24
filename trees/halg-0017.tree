@@ -1,0 +1,17 @@
+\import{macros}
+\title{Definições equivalentes de sequência exata curta}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Observação}
+
+\p{
+  Como foi visto em [[halg-0014]] e [[halg-0015]], [exatidão](halg-0016) em #{L} e #{N} é equivalente a exigir a injetividade de #{f} e a sobrejetividade de #{g}, respectivamente. Como ela também é exata em #{M}, temos que #{\im f = \ker g}.
+}
+
+\p{
+  Munidos disso, ao usarmos o [primeiro teorema do isomorfismo](halg-000c), a injetividade de #{f} e a sobrejetividade de #{g}, obtemos que ##{L \cong  L / \ker f \cong \im f} e também ##{N = \im g \cong M / \ker g = M / \im f \cong M / L.}
+}
+
+\p{
+  Portanto, à menos de isomorfismo, #{L} é submódulo de #{M}, #{N} é o quociente #{M / L}, #{f} é a inclusão de #{\im f} em #{A} e #{g} é a projeção de #{M} em #{M / L}. 
+}

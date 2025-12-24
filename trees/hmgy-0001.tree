@@ -2,6 +2,6 @@
 \author{alice-micheloni}
 \title{Homologia}
 
-\p{Anotações em Álgebra Homológica e Homologia.}
+\p{Anotações em Álgebra Homológica e Homologia. A principal referência usada é a [[topologia-algebrica]].}
 
-\transclude{hmgy-0002}
+\transclude{halg-000h}

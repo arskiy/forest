@@ -137,8 +137,8 @@ article>section>details>summary>header>h1>.taxon {
   padding-bottom: 5pt;
 }
 
-section section[data-taxon="Referência"]>details>summary>header>h1>.taxon,
-section section[data-taxon="Pessoa"]>details>summary>header>h1>.taxon {
+section section[data-taxon="Reference"]>details>summary>header>h1>.taxon,
+section section[data-taxon="Person"]>details>summary>header>h1>.taxon {
   display: none;
 }
 

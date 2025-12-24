@@ -1,0 +1,13 @@
+\import{macros}
+\title{Módulo livre à direita de sequência curta implica cisão}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Proposição}
+
+\p{
+  Seja #{0 \to L \to M \to N \to 0} uma sequência exata curta. Se #{N} é livre, então a sequência cinde.
+}
+
+\proof{
+  Seja #{\{e_i\}_{i \in I}} uma base para #{N}, e defina um homomorfismo #{u \from C \to B} por #{u(e_i) = b_i}, para #{b_i} arbitrário tal que #{b_i \in g^{-1}(\{e_i\})} e estendendo por linearidade. Então #{(g \circ u)(e_i) = e_i}, e #{g \circ u = \id_C}.
+}

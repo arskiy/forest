@@ -1,0 +1,9 @@
+\import{macros}
+\title{Base de um módulo}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Definição}
+
+\p{
+  Dados um #{R}-módulo #{M} e #{B} um conjunto gerador de #{M}, #{B} é dito uma \textbf{base} para #{M} se seus elementos são linearmente independentes. Isto é, para #{b_1, \cdots, b_n \in B} e #{r_1, \cdots, r_n \in R}, se #{r_1b_1 + \cdots + r_nb_n = 0_M}, então necessariamente #{r_1 = \cdots = r_n = 0_R}.
+}

@@ -9,9 +9,6 @@
   <xsl:template match="/">
     <html xmlns="http://www.w3.org/1999/xhtml" data-base-url="{/f:tree/@base-url}">
       <head>
-        <script>
-          document.documentElement.style.background = "rgb(255, 243, 229)";
-        </script>
         <meta name="viewport" content="width=device-width" />
         <meta name="theme-color" content="#1e1e1e" />
         <link rel="icon" href="favicon.ico" />

@@ -1,0 +1,14 @@
+\import{macros}
+\title{Anulador}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Definição}
+
+\p{
+  Dados um #{R}-módulo #{M} e um subconjunto #{S \subset M}, o conjunto ##{\Ann(S) = \{a \in R : am = 0, \forall m \in S\} \subset R}
+    é chamado de \textbf{anulador} de #{S}. Se #{\Ann(M) = \{0\}}, #{M} é dito um \textbf{#{R}-módulo fiel}.
+}
+
+\p{
+  Se #{S = \{x\}}, denotaremos #{\Ann(\{x\})} por #{\Ann(x)}.
+}

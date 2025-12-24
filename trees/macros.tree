@@ -189,6 +189,7 @@
 \def\dblcat[name]{#{\cat{\mathbb \name}}}
 
 \def\Rmod{#{_{R}\catname{Mod}}}
+\def\Smod{#{_{S}\catname{Mod}}}
 
 \def\Cat{#{\cat{Cat}}} %should perhaps be a 2-category by default...or double?
 \def\CAT{#{\cat{CAT}}}
@@ -320,6 +321,10 @@
   \subtree{\title{Resumo}\body}
 }
 
+\def\notacao[body]{
+  \subtree{\title{Notação}\body}
+}
+
 \def\notes[body]{
   \subtree{\title{Nota.} \body}
 }
@@ -346,6 +351,10 @@
 
 \def\prop[head][body]{
   \subtree{\title{\head} \taxon{Proposição} \body}
+}
+
+\def\corolario[head][body]{
+  \subtree{\title{\head} \taxon{Corolário} \body}
 }
 
 % Figures
@@ -447,6 +456,7 @@
 \def\cocone{#{\triangleright}}
 
 % Algebra
+\def\Ann{#{\operatorname{Ann}}}
 \def\lcm{\operatorname{lcm}}
 \def\im{\operatorname{im}}
 \def\coim{\operatorname{coim}}
@@ -500,4 +510,4 @@
 \def\arcosh{#{\operatorname{arcosh}}}
 \def\artanh{#{\operatorname{artanh}}}
 
-\p{Nesse arquivo guardo minhas definições em #{\LaTeX}. Não há nada para ser lido.}
+\p{Nesse arquivo guardo minhas definições em #{\LaTeX}.}

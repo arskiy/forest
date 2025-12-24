@@ -1,0 +1,9 @@
+\import{macros}
+\title{Soma direta de #{R}-módulos}
+\date{2025-12-24}
+\author{alice-micheloni}
+\taxon{Definição}
+
+\p{
+  Seja #{\{M_i\}_{i \in I}} uma família arbitrária de #{R}-módulos. Então sua \textbf{soma direta} #{\bigoplus_{i \in I} M_i} é o submódulo de #{\prod_{i \in I} M_i} formado pelos elementos #{\{x_i\}_{i \in I} \in \prod_{i \in I} M_i} tais que #{|\{x_i: x_i \neq 0_{M_i}\}| < \aleph_0}.
+}
